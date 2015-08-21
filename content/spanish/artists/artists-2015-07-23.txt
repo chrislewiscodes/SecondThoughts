@@ -1,0 +1,27 @@
+# David Reinfurt
+
+David Reinfurt es un artista, escritor y diseñador establecido en Nueva York, cuyo trabajo integra ideas altamente conceptuales con experimentación tecnológica. En el 2000, Reinfurt formó ORG, un estudio de diseño compuesto por una red de colaboradores en constante rotación. 
+
+En el 2006, junto con Stuart Bailey, Reinfurt estableció́ Dexter Sinister, un taller editorial que funciona de manera contraria a la producción editorial de gran escala. Siguiendo las transformaciones en la manufactura industrial, Dexter Sinister aplica ideas postfordistas como las economías “just-in-time”, utiliza maquinarias de bajo costo y estrategias de distribución digitales. A través de una combinación de investigación activa, proyectos especulativos, y una práctica de diseño expandida, Dexter Sinister aborda los alcances de la comunicación visual para generar conocimiento y hacer circular información de manera crítica. El taller es responsable la aclamada revista Dot Dot Dot y de The Serving Library, un archivo virtual y una biblioteca física que se retroalimentan mutuamente. 
+				
+Reinfurt es actualmente profesor en Princeton, y lo ha sido en Yale, Columbia y Rhode Island School of Design y crítico invitado en el Royal College of Art y la Rietveld Gerrit Academy. En 2006 y 2007 fue afiliado del Center for Advanced Visual Studies del MIT y en 2010 fue nombrado United States Artists Rockefeller Fellow in Architecture and Design. Su trabajo ha sido expuesto extensamente y es parte de las colecciones permanentes del Walker Art Center, el Whitney Museum, el Cooper Hewitt National Design Museum y el Museum of Modern Art. 
+
+![David Reinfurt](img/reinfurt/1.jpg)
+
+# Daniël van der Velden 
+
+Daniël van der Velden es un diseñador y escritor establecido en Amsterdam. En el 2007, junto con Vinca Kruk, Daniël fundó Metahaven, un estudio cuyas prácticas consideran el diseño gráfico como una herramienta para analizar modelos de organización social y estructuras de poder económicas y políticas. Haciendo énfasis en nociones como la transparencia y la visibilidad, entre sus actividades destacan propuestas de identidad para Sealand, un territorio autoproclamado soberano en una plataforma maritima en la costa inglésa; el desarrollo de Nulpunt/0, una red social que permite comentar y compartir documentos oficiales; y el diseño de productos para WikiLeaks, la plataforma de fugas de información. 	
+El trabajo de Metahaven ha sido expuesto en lugares como Manifesta 8, MoMA PS1, Artists Space, Casco, The Walker Art Center, CAPC musée d’art contemporain de Bordeaux, Künstlerhaus Stuttgart, Bureau Europa, AA London, the Gwangju Design Biennale, Museion y Kunsthalle Baden-Baden. En el 2010 Metahaven publicó Uncorporate Identity con la editorial Lars Müller y en 2015, Black Transparency con la editorial Sternberg Press. Daniël van der Velden es crítico en Yale University, asesor de investigación en Jan van Eyck Academie y tutor en Sandberg Institute y ha impartido conferencias en universidades como Columbia, School of Visual Arts, Rhode Island School of Design, Royal College of Art, Goldsmiths University y Royal Academy of Arts, asi como en Tate Britain, Stedelijk Museum y la Bienal de Arquitectura de Venecia.
+
+![Daniël van der Velden](img/metahaven/1.jpg)
+
+
+# Constant Dullaart
+
+Constant Dullaart es un artista establecido en Berlín. Interesado en la vernácula de las herramientas de comunicación y en el Internet entendido como un espacio publico, Dullaart investiga las características estéticas y estructurales de plataformas y los canales por medio de los cuales tenemos acceso a la información. Su enfoque es político y critica cómo los sistemas institucionales influyen en la semántica contemporánea. 
+
+A través de sitios web, performances, e instalaciones, Dullaart pone en juego la dialéctica de nociones como “privado” y “publico”, “físico” y “digital”, “offline” y “online”, disolviendo su naturaleza binaria. Entre sus proyectos destacan Jennifer in Paradise, una restauración digital de la primera imagen en haber sido modificada en Photoshop; Treasure of Lima, un código con la ubicación de un recipiente con obras de importantes artistas enterrado en una isla en el caribe; y decenas de paginas web diseñadas como sitios de critica institucional y protesta anti-corporativa, de donde sobresale una serie de exploraciones con la interfaz de Google por la cual la empresa aumentó la seguridad de su código.  
+					
+Dullaart ha sido residente de la Rijksakademie y es profesor en The Werkplaats Typografie en la ciudad de Arnhem. Su trabajo ha sido expuesto en lugares como MASS MoCA, UMCA, New Museum, Museo Politécnico de Moscú, Autocenter, de Appel, W139 y el Museo Stedelijk. 
+
+![Constant Dullaart](img/dullaart/4.jpg)

@@ -1,0 +1,3 @@
+<p>This is a random paragraph to test various kinds of changes. From one revision to the next, I plan to change capitalization, punctuation, maybe transpose a few select words, and otherwise munge the text. This will pave the way for Chris H's fantastic styling to call out the changes in an entertaining and educational way. Who's with me?</p>
+
+<p>We also need to take into account <em>styling changes</em>, which might get confusing when trying to wrap changes in HTML elements. For instance, I might want to change something outside <em>and inside</em> an element at the same time. While the browsers will probably be able to deal with badly nested elements, it's best to avoid them if we can.</p>

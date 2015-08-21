@@ -1,0 +1,216 @@
+<div class="version">
+	<div class="content">
+		<div class="col colone">
+			<div class="gen-description section">
+				<h2 class="section-title">Proyecto</h2>			
+				<p>
+					The Second Thoughts Series es un programa anual de conferencias, talleres, exhibiciones, publicaciones de artistas y diseñadores. Es la primera iniciativa pedagógica en México enfocada en prácticas de diseño gráfico crítico. 
+				</p>
+				<p>
+					Las actividades se llevaran a cabo en instituciones culturales de la Ciudad de México entre Otoño del 2015 y Primavera del 2016.
+				</p>
+			</div>	
+			<div class="curatorial section">	
+				<h2>Curatorial</h2>
+				<p>
+					Los artistas tienen una larga tradición desafiando los circuitos institucionales del arte y los modelos económicos dominantes, sin embargo hoy en día, la producción artística y su mercado, es partícipe en la transición hacia las formas de sobrecapitalización que parecen establecerse como el paradigma político a nivel global. Por un lado, las industrias se han enfocado en la producción de servicios donde la comunicación y la transmisión de información son esenciales y, por lo tanto, donde la mano de obra requiere procedimientos creativos, especulativos e intelectuales, y por el otro, las tareas dedicadas a la cultura se someten cada vez más a las normas de producción capitalista. Los artistas contemporáneos se han convertido en un nuevo  arquetipo de la condición actual de la labor, y  si esto es cierto ¿cómo es que pueden efectuar una crítica más contundente en contra de las crecientes injusticias provocadas por las mismas estructuras de poder que los sostienen?
+				</p>
+				<p>
+					En los últimos años, han surgido propuestas artísticas en donde a través de procesos recontextualización de material preexistente, se involucran las tecnologías y estrategias de la comunicación visual para integrar el pensamiento radical con productos potencialmente atractivos y accesibles para un público general. En este sentido, el diseño gráfico es aprovechado como un recurso postconceptual y como una vía de acceso mutua entre el sistema del arte y el mundo comercial. 
+				</p>
+				<div class="image">			
+					<img src="img/about/" />			
+				</div>
+				<p>
+					A medida que se despliega el potencial discursivo de los actos de recolectar, seleccionar, organizar y distribuir contenido, se cuestionan las ideas sobre la autoría y la posición privilegiada del artista. Así mismo, la mutabilidad y reproductibilidad de la información, a través de una amplia gama de medios, desmantela la supremacía del objeto artístico singular y, en el proceso, desmitifica como los poderes políticos y económicos regulan la circulación y consumo de la cultura y el conocimiento en la actualidad. Con nuevas maneras de hacer política a su alcance, artistas y diseñadores navegan espacios de creciente inconformidad social ejercitando ideas alrededor de un amplio sector de actividades que van desde nuevos planteamientos sobre propiedad intelectual como el copyleft y los programas de código abierto, técnicas de producción postfordistas, operaciones contra la vigilancia y la censura gubernamental, iniciativas autosustentables –como el movimiento “Do It Yourself”– y hasta formas de emprendimiento autogobernadas, y en muchos casos ilegales, como la piratería y el mercado negro.
+				</p>
+				<div class="image">			
+					<img src="img/about/" />			
+				</div>
+			</div>
+			<div class="credits section">
+				<h2>Créditos</h2>
+				<p>
+					The Second Thoughts Series es un proyecto iniciado y curado por Federico Perez Villoro llevado a cabo gracias al apoyo de Alumnos47. 
+  
+				</p>
+				<p>
+					Extendemos nuestros especiales agradecimientos a Centro por facilitar sus espacios y difundir las actividades y a nuestros patrocinadores oficiales. Agradecemos también a las personas que han hecho posible el proyecto, en especial a: Alicia Cheng, Sarah Gephart, Mariana Pérez Villoro, Ana Paula Tovar, Humberto Moro, Mario Navarro, 
+				</p>
+				<p>
+					La identidad visual y el sitio web fueron diseñados por Christopher Hamamoto.
+				</p>
+			</div>
+		</div>
+		<div class="col coltwo">
+			<h2 class="section-title">Programa</h2>
+			<div class="program section">
+				<div class="visit-1">
+					<p class="large">
+						Visita 1:<br />
+						David Reinfurt<br />
+						11–15<br />
+						Noviembre 2015
+					</p>
+					<h3>Conferencia</h3>
+					<h4>“Sin titulo”</h4>
+					<ul>
+						<li>11 Noviembre 2015 (6pm)</li>
+						<li>Museo Tamayo</li>
+						<li>(Paseo de la Reforma #51, Bosque de Chapultepec, C.P. 11508,</li>México, D.F.)</li>
+						<li>Evento gratuito</li>
+					</ul>
+					<h3>Seminario</h3>
+					<h4>“Sin titutlo”</h4>					
+					<ul>
+						<li>12 Noviembre 2015 (7pm)</li>
+						<li>Fundación Alumnos47</li>
+						<li>(Alumnos 47, Col. San Miguel Chapultepec, C.P. 11870,  México, DF,México)</li>
+						<li>Evento gratuito</li>
+					</ul>
+					<h3>Taller</h3>
+					<h4>“Sin titutlo”</h4>					
+					<ul>
+						<li>13–15 Noviembre 2015</li>
+						<li>SOMA</li>
+						<li>(Calle 13 #25, San Pedro de los Pinos, C.P. 03800, Ciudad de México, D.F.)</li>
+						<li>Actividad gratuita con suscripción</li>
+						<li>(más información)</li>
+					</ul>
+				</div>
+				<div class="visit-2 section">
+					<p class="large">
+						Visita 2:<br />
+						Daniel van der Velden<br />
+						(Metahaven)<br />
+						2–7<br />
+						Febrero 2016
+					</p>
+				</div>
+				<div class="visit-3 section">
+					<p class="large">
+						Visita 3:<br /> 
+						Constant Dullaart<br />
+						19–24<br />
+						Abril 2016 
+					</p>
+				</div>
+				<p>
+					Las conferencias y seminarios son gratuitos y abiertos al público en general. Los talleres requieren suscripción obligatoria y estan dirigidos a artistas practicantes en las áreas y temas a ser estudiados. 
+				</p>
+				<p>
+					Los datos específicos de cada una de las actividades serán dados a conocer conforme se acerquen sus respectivas fechas.
+				</p>				
+			</div>
+			<div class="publication section">
+				<p>
+					Las conferencias y seminarios son gratuitos y abiertos al público en general. Los talleres requieren suscripción obligatoria y estan dirigidos a artistas practicantes en las áreas y temas a ser estudiados. 
+				</p>
+				<p>
+					Los datos específicos de cada una de las actividades serán dados a conocer conforme se acerquen sus respectivas fechas.
+				</p>
+			</div>
+		</div>
+		<div class="col colthree">
+			<h2 class="section-title">Artistas</h2>
+			<div class="artist-1 section">
+				<h3>David Reinfurt (Dexter Sinister)</h3>
+				<p>
+					Al frente de la reciente ola de diseñadores cuyas prácticas desdibujan las fronteras entre proyectos para clientes y proyectos de investigación crítica de iniciativa propia, David Reinfurt (es un artista, escritor y diseñador establecido en Nueva York, cuyo trabajo) combina ideas altamente conceptuales con experimentación tecnológica. Después de recibir su Maestría en Diseño Gráfico de la Universidad de Yale en 1999 y trabajar en IDEO en San Francisco, fundó ORG en Nueva York, un estudio de diseño gráfico compuesto por una red colaboradores en constante rotación.
+				</p>
+				<p>
+					En 2006, junto con Stuart Bailey, Reinfurt estableció Dexter Sinister, un pequeño taller editorial que funciona de manera contraria a las realidades de producción de las editoriales de gran escala. Siguiendo el ejemplo de las transformaciones en el mundo de la manufactura industrial, Dexter Sinister aplica ideas postfordistas como las economías “just-in-time”, utiliza maquinarias locales de bajo costo, y estrategias de distribución digitales para colapsar las distinciones entre los procesos de escritura, edición, diseño, producción, y distribución. El taller es responsable de publicaciones como la aclamada revista de arte Dot Dot Dot y The Serving Library, un ambicioso archivo virtual y una pequeña biblioteca física que se retroalimentan mutuamente. Situado en un sótano en el Lower East Side, el espacio también sirve como una sede para otras actividades así como lecturas, proyecciones de películas y performances. Esta combinación de investigación activa, experimentación especulativa y prácticas expandidas ha puesto a Dexter Sinister en primer plano dentro de la vanguardia en el arte y diseño contemporáneo.
+				</p>
+				<p>
+					Reinfurt ha sido profesor en Princeton, Yale, Columbia, y Rhode Island School of Design, asimismo ha sido crítico invitado en numerosas universidades, entre ellas el Royal College of Art en Londres y la Rietveld Gerrit Academy en Amsterdam. En 2010 fue nombrado United States Artists Rockefeller, y anteriormente, En 2006 y 2007 fue un afiliado en el Center for Advanced Visual Studies del MIT. Su trabajo ha sido expuesto ampliamente incluyendo en la Bienal del Whitney de 2008 y la Bienal de Venecia 2013 y es parte de las colecciones permanentes del Walker Art Center, el Whitney Museum, el Cooper Hewitt National Design Museum, y el Museum of Modern Art.
+				</p>
+				<div class="image">
+					<img src="img/reinfurt/" />
+				</div>
+			</div>
+			<div class="artist-2 section">
+				<h3>Daniel van der Velden (Metahaven) </h3>
+				<p>
+					Establecido en Amsterdam Daniel van der Velden es un diseñador y escritor cuyo trabajo claramente demuestra el uso del diseño gráfico como un medio de profunda investigación. Después de estudiar en la Jan van Eyck Academie y recibirse de la Academia Willem de Kooning Academie a finales de los 90’s, trabajó durante casi diez años con Maureen Mooren en innovadores y aclamados proyectos de identidad visual y diseño editorial para clientes como el espacio de arte ROOM, la revista de arquitectura “Archis”y el festival Holland Festival.
+				</p>
+				<p>
+					En 2007, junto con Vinca Kruk, Daniel fundó Metahaven, un estudio que combina el diseño, la investigación y la escritura. Haciendo énfasis en la transparencia y la visibilidad, las prácticas especulativas de Metahaven consideran el el vocabulario de diseño gráfico como un medio para la producción de conocimiento y como una herramienta para analizar modelos de organización social y estructuras de poder económico y políticas. Trabajando simultáneamente en proyectos comisionados, y en proyectos de iniciativa propia, algunas de sus actividades incluyen una serie de productos para WikiLeaks, así como propuestas para la identidad para Sealand, un territorio autoproclamado soberano en una plataforma a siete millas de distancia de la costa Inglés construida durante la Segunda Guerra Mundial. 
+				</p>
+				<p>
+					En el 2010 Metahaven publicó Uncorporate Identity con la editorial Lars Müller, y en el 2015  Black Transparency: The Right to Know in the Age of Mass Surveillance con la editorial Sternberg Press. Su trabajo ha sido expuesto extensamente incluyendo en lugares como Manifesta 8, MoMA PS1, Artists Space, Casco, The Walker Art Center, CAPC musée d'art contemporain de Bordeaux, Künstlerhaus Stuttgart, Bureau Europa, AA London, the Gwangju Design Biennale 2011, Museion, y Kunsthalle Baden-Baden. En el 2013 el estudio fue premiado con el Cobra Art Prize y recibió el Design Studio of the Year otorgado por la revista Icon. En el 2012 fueron finalistas de los Dutch Design Awards. 
+				</p>
+				<p>
+					Actualmente Danievan der Velden es crítico en Yale, asesor de investigación en Jan van Eyck Academie y tutor en Sandberg Institute. Asimismo ha dado conferencias en muchas otras universidades como Columbia, School of Visual Arts, Rhode Island School of Design, Royal College of Art, Goldsmiths University, y Royal Academy of Arts y en lugares como Tate Britain, Stedelijk Museum, y la Venice Architecture Biennial. 
+				</p>
+				<div class="image">			
+					<img src="img/metahaven/" />
+				</div>
+			</div>	
+			<div class="artist-3 section">
+				<h3>Constant Dullaart</h3>
+				<p>
+					Constante Dullaart es un artista establecido en Berlín que trabaja con las herramientas de la comunicación masiva y que aprovecha el Internet como espacio público. En el 2002 se graduó de la Gerrit Rietveld Academie y del 2007 al 2008 fue residente de la Rijksakademie en Ámsterdam.
+				</p>
+				<p>
+					Interesado en la vernácula de los medios digitales y el Internet, su enfoque es político y crítica el cómo los sistemas institucionales influyen en la semántica contemporánea y por lo tanto en nuestra percepción del mundo. A través gestos mínimos y en ocasiones precarios, su investiga los efectos de los medios y plataformas de comunicación contemporánea, y a menudo toma la forma de sitios web, performances, instalaciones e imágenes encontradas y manipuladas. Dullaart investiga los características estéticas y estructurales de los canales por medio de los cuales tenemos acceso a la información, así como formas de presentación y representación alternativas. Por así decirlo, en lugar de escribir un libro que sería colocado en un estante de una biblioteca, está interesado en activar el concepto mismo de la biblioteca como un sistema. Al introducir de un espacio de la resistencia intermedio entre la intimidad y la difusión al cual llama "Balconism", Dullaart pone en juego la dialéctica de nociones como privado y público, físico y digital, offline y online, disolviendo con esto su naturaleza binaria. 
+				</p>
+				<p>
+					Entre sus proyectos recientes destacan Jennifer in Paradise, que consiste en la restauración y serie de exploraciones visuales de la primera imagen jamás modificada en Photoshop, y Treasure of Lima, un cilindro impreso en 3d con la ubicación codificada de un recipiente que contiene obras de importantes artistas y que fue enterrado en una isla a cientos de kilómetros de Costa Rica.
+				</p>
+				<p>
+					Dullaart ha sido curador de diversas exposiciones, impartido conferencias en múltiples universidades y es profesor en el The Werkplaats Typografie en la ciudad de Arnhem. Su trabajo ha sido publicado internacionalmente y exhibido en lugares como MASS MoCA, UMCA, y el New Museum de Nueva York, Museo Politécnico de Moscú, Autocenter en Berlín, y de Appel, W139, y el Museo Stedelijk en los Países Bajos.
+				</p>
+				<div class="image">
+					<img src="img/dullaart/" />
+				</div>
+			</div>						
+		</div>
+		<div class="col colfour">
+			<div class="more-info section">
+				<h2>Mas info</h2>
+				<div class="more-artist-1">
+					<h3>David Reinfurt</h3>
+					<ul>
+						<li>www.dextersinister.org</li>
+						<li>www.o-r-g.com</li>
+						<li>Serving Library</li>
+						<li>Ecstatic Alphabets</li>
+						<li>Afterall: On Dexter Sinister</li>
+						<li>Artist talk by David Reinfurt</li>
+					</ul>
+				</div>
+				<div class="more-artist-2">
+					<h3>Daniel van der Velden</h3>
+					<ul>
+						<li>www.metahaven.com</li>
+						<li>Rhizome</li>
+						<li>Eye Magazine</li>
+						<li>e-flux</li>
+						<li>Daniel van der Velden</li>
+					</ul>
+				</div>
+				<div class="more-artist-3">
+					<h3>Constant Dullaart</h3>
+					<ul>
+						<li>Constant Dullaart</li>
+						<li>Frieze</li>
+						<li>Furtherfield</li>
+						<li>Balconism</li>
+						<li>Constant Dullaart</li>
+					</ul>
+				</div>
+			</div>
+			<div class="contact section">
+				<h3>Contact</h3>
+				<ul>
+					<li>The Second Thoughts Series</li>
+					<li>contacto@secondthoughts.com</li>
+					<li>redes sociales: @secondthoughts</li>
+				</ul>
+				<ul>
+					<li>lista de correos</li>
+				</ul>
+			</div>
+		</div>		
+	</div>
+</div>
