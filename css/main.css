@@ -3,43 +3,10 @@
 	margin: 0px;
 }
 
-#current, #v1, #v2, #v3, #v4 {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	pointer-events: none;
-}
-
-#current {
-	pointer-events: all;
-}
-
-.version { 
+.content { 
 	position: relative;
 	z-index: 10;
 }
-
-#v1, 
-#v2, 
-#v3,
-#v4,
-.v1 #current,
-.v2 #current,
-.v3 #current,
-.v4 #current
-{
-	opacity: 0;
-}
-
-.v1 #v1,
-.v2 #v2,
-.v3 #v3,
-.v4 #v4
-{
-	opacity: 1;
-}
-
 
 body {
 	font-family: 'NeutralBP-Medium';
@@ -93,12 +60,18 @@ ul { margin-bottom: 36px; }
 }
 
 .content {
-	padding: 300px 0px 0px 0px;
+	padding: 0;
 	width: 1200px;
 	margin: auto;
 	display: block;
+}
 
-	overflow: auto;
+.content::after {
+	display: block;
+	clear: both;
+	content: " ";
+	width: 0;
+	height: 0;
 }
 
 /* site overlay */
@@ -145,7 +118,7 @@ ul { margin-bottom: 36px; }
 	cursor: pointer;
 }
 
-#close span:before, #close span:after{
+#close span::before, #close span::after{
   cursor: pointer;
   border-radius: 0px;
   height: 2px;
@@ -156,12 +129,12 @@ ul { margin-bottom: 36px; }
   content: '';	
 }
 
-#close span:before {
+#close span::before {
   -ms-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-#close span:after {
+#close span::after {
   -ms-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
@@ -184,7 +157,7 @@ ul { margin-bottom: 36px; }
 	border-radius: 100px;
 }
 
-#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
+#nav-toggle span, #nav-toggle span::before, #nav-toggle span::after {
   cursor: pointer;
   border-radius: 0px;
   height: 2px;
@@ -194,28 +167,28 @@ ul { margin-bottom: 36px; }
   display: block;
   content: '';
 }
-#nav-toggle span:before {
+#nav-toggle span::before {
   top: -4px; 
 }
-#nav-toggle span:after {
+#nav-toggle span::after {
   bottom: -4px;
 }
 
-#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
+#nav-toggle span, #nav-toggle span::before, #nav-toggle span::after {
   transition: all 500ms ease-in-out;
 }
 #nav-toggle.active span {
   background-color: transparent;
 }
-#nav-toggle.active span:before, #nav-toggle.active span:after {
+#nav-toggle.active span::before, #nav-toggle.active span::after {
   top: 0;
 }
-#nav-toggle.active span:before {
+#nav-toggle.active span::before {
   -ms-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-#nav-toggle.active span:after {
+#nav-toggle.active span::after {
   -ms-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
@@ -261,7 +234,7 @@ ul { margin-bottom: 36px; }
     );
 }
 
-#nav ul li a:hover {
+#nav ul li a::hover {
 	color: black;
 	text-decoration: none;
 	background-image: linear-gradient(to top,
@@ -303,7 +276,7 @@ ul { margin-bottom: 36px; }
     );	
 }
 
-.navigated #nav ul li a:hover {
+.navigated #nav ul li a::hover {
 	color: black;
 	background-image: linear-gradient(to top,
     	rgba(0,0,0,0) 5%,
@@ -367,7 +340,7 @@ h1#background-type {
 	font-family: 'Times New Roman', 'Times', serif;
 
 	/*	
-	background: url(img/background-type.png) no-repeat center center;
+	background: url(/img/background-type.png) no-repeat center center;
 	background-size: contain;
 
 	text-indent: -1000000px;*/
@@ -426,7 +399,7 @@ h1#background-type.show {
 }
 
 
-.colfour a:hover:after {
+.colfour a::hover::after {
 	content: " \2192";
 	width: 23px;
 	display: inline-block;
@@ -447,134 +420,161 @@ img {
 /* layout changes */
 
 #extra-parameters {
-	overflow: auto;
 }
 
 
 /* showing */
 
-.v1 .show #current,
-.v2 .show #current,
-.v3 .show #current
-{
-	opacity: 1;
+.revision {
+	display: none;
 }
 
-
+.rev-0 .revision.rev-0,
+.rev-1 .revision.rev-1,
+.rev-2 .revision.rev-2 {
+	display: block;
+}
 
 /* marks */
 
-/*.marks.hide {
-	color: transparent;
-}*/
 
-.marks.hide .delete, .marks.hide .add, .marks.hide .return, .marks.hide .punctuation {
-	color: transparent;
+/* old-0 is plain old version
+ * old-1 is old version with strikethroughs
+ * old-2 is old version with invisible strikethroughs
+ * new-2 is new version with invisible underlines
+ * new-1 is new version with underlines
+ * new-0 is plain new version
+ */ 
+
+/* <del> is old revision, <ins> is new */
+
+/* clear out the default strikethrough / underline */
+ins, del { 
+	text-decoration: none;
 }
 
+.marks .revision ins, .marks .revision del {
+	position: relative;
+}
 
-.marks.hide .image {
-	background: url(img/x.gif) no-repeat center center;
+.old-0 .revision ins, .old-1 .revision ins, .old-2 .revision ins,
+.new-2 .revision del, .new-1 .revision del, .new-0 .revision del {
+	display: none;
+}
+
+.marks.old-2 .revision del, 
+.marks.new-2 .revision ins {
+	color: rgba(0,0,0,0.3);
+}
+
+.marks.old-2 .revision .image, 
+.marks.new-2 .revision .image {
+	background: url(/img/black-x.gif) no-repeat center center;
 	background-size: 100% 100%;
 	width: 100%;
 }
 
-.marks.hide .image img{
+.marks.old-2 .revision .image img, 
+.marks.new-2 .revision .image img {
 	opacity: 0;
 }
 
 /* marks */
 
-.marks .delete {
-	background: url(img/dot.gif) 0px 10px repeat-x;
+.marks:not(.old-0) .revision del {
+	background: url(/img/black-dot.gif) 0px 10px repeat-x;
 }
 
-.marks .large .delete {
-	background: url(img/dot.gif) 0px 16px repeat-x;
+.marks:not(.old-0) .revision .large del {
+	background: url(/img/black-dot.gif) 0px 16px repeat-x;
 }
 
-.marks .add {
-	background: url(img/dot.gif) left bottom repeat-x;
+.marks:not(.new-0) .revision ins {
+	background: url(/img/black-dot.gif) left bottom repeat-x;
 }
 
-.punctuation {
-	position: relative;
-	height: 0px;
-	width: auto;
-	overflow: visible;
-}
-
-.marks .circle {
-	width: 32px;
-	height: 34px;
-	background: url(img/punctuation.gif) left bottom no-repeat;
-	background-size: cover;
+.marks.new-1 .revision ins.punctuation::after,
+.marks.new-2 .revision ins.punctuation::after {
 	display: block;
 	position: absolute;
 	left: -14px;
 	top: 0px;
+	width: 32px;
+	height: 34px;
+	background: url(/img/black-punctuation.gif) left bottom no-repeat;
+	background-size: cover;
 }
 
-.marks .capitalize {
-	width: 10px;
-    height: 25px;
-    background: url(img/3-line.gif) left bottom repeat-x;
+.marks.old-1 .revision del.capitalize::after,
+.marks.old-2 .revision del.capitalize::after,
+.marks.new-1 .revision ins.capitalize::after,
+.marks.new-2 .revision ins.capitalize::after {
     display: block;
     position: absolute;
     left: 0px;
     top: 3px;
+	width: 10px;
+    height: 25px;
+    background: url(/img/black-3-line.gif) left bottom repeat-x;
 }
 
-.marks .umlaut {
+/*
+.marks .revision .umlaut {
     width: 10px;
     height: 25px;
-    background: url(img/umlaut.gif) left top no-repeat;
+    background: url(/img/black-umlaut.gif) left top no-repeat;
     display: block;
     position: absolute;
     left: 0px;
     top: 2px;
 }
 
-.marks .loweracute {
+.marks .revision .loweracute {
 	width: 10px;
     height: 10px;
-    background: url(img/loweracute.gif) left top no-repeat;
+    background: url(/img/black-loweracute.gif) left top no-repeat;
     display: block;
     position: absolute;
     left: 0px;
     top: 0px;
 }
+*/
 
-.marks .lowercase {
-    height: 20px;
-    background: url(img.lowercase.gif) left top no-repeat;
+.marks.old-1 .revision del.lowercase::after,
+.marks.old-2 .revision del.lowercase::after,
+.marks.new-1 .revision ins.lowercase::after,
+.marks.new-2 .revision ins.lowercase::after {
     display: block;
     position: absolute;
     left: -2px;
     top: -1px;
+    height: 20px;
+    background: url(/img/black-lowercase.gif) left top no-repeat;
     background-size: contain;
     width: 14px;
 }
 
-.marks .return {
+/*
+.marks .revision .return {
     width: 25px;
     height: 45px;
-    background: url(img/pillcrow.png) left top no-repeat;
+    background: url(/img/pillcrow.png) left top no-repeat;
     display: block;
     position: relative;
     left: 0px;
     top: 0px;
 }
+*/
 
 /* image */
 
-body #extra-parameters.images .section div{
+body #extra-parameters.images .section div {
 	position: relative;
 	z-index: 10;
 }
 
 
-body #extra-parameters.images .image{
+body #extra-parameters.images .image {
 	position: absolute;
 	max-width: 300px;
 	height: auto;

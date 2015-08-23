@@ -51,7 +51,7 @@ $('#nav').find('a').click(function(){
 
 $('#close').click(function(){
     $('#overlay').removeClass('overlay-on');
-    clearInterval(pageCycle); //clear interval   
+    window.pageCycle && clearInterval(pageCycle); //clear interval   
     $('h1#background-type').addClass('show');
 
 });
@@ -66,16 +66,15 @@ $('#message').css('top', windowHeight/2-messageHeight/1.5+'px');
 
 function getUrlParameter(sParam)
 {
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) 
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam) 
-        {
-            return sParameterName[1];
-        }
-    }
+	var result;
+	$.each(window.location.search.substr(1).split('&'), function(i, equal) {
+		var keyval = equal.split('=');
+		if (keyval[0] === sParam) {
+			result = keyval.length > 1 ? keyval[1] : true;
+			return false;
+		}
+	})
+	return result;
 }  
 
 var rotate = getUrlParameter('rotate');
@@ -89,6 +88,7 @@ var logo = getUrlParameter('logo');
 var image = getUrlParameter('image');
 var invert = getUrlParameter('invert');
 
+console.log(marks);
 
 if (layout === 'true') {
 	$('#extra-parameters').addClass('layout');
@@ -119,8 +119,8 @@ if (invert === 'true') {
 }
 
 
-i=0;
-n=0;
+var rev=0;
+var step=0;
 
 var lastFixPos = 0;
 
@@ -156,7 +156,7 @@ function scrollHandler() {
         $('.number').html(i);
 
         if ( marks === 'true' && hide !== 'true' ) {
-            // every 1 itterations move to the next version
+            // every 2+0 itterations move to the next version
             if (n%2 === 0) {
                 i++;
             }
@@ -233,23 +233,73 @@ function scrollHandler() {
 
 }
 
-
+/*
 window.onscroll = scrollHandler;  
-
+var scrollTimer;
 $(window).scroll(function() {
-    clearTimeout($.data(this, 'scrollTimer'));
-    $.data(this, 'scrollTimer', setTimeout(function() {
+    scrollTimer && clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
         if(!$('body').hasClass('navigated')) {
             $('body').removeClass();
         }
         // set counter to 0
-        //i=0;
-        $('#number').html(i);
-    }, stop));
+        i=0;
+    }, stop);
 });
 
 var pageCycle = setInterval(scrollHandler, 10);
+*/
 
+if (marks) {
+	var steps = 6; //old-0 old-1 old-2 new-2 new-1 new-0
+	var body = document.getElementsByTagName('body')[0];
+	
+	var revs = 0;
+	while ($('.rev-' + (++revs)).length) {}
+	--revs;
+
+	function doMarks(tick) {
+		if (tick >= 0) {
+			var rev = revs - (Math.floor(tick / steps) % revs);
+			var step = tick % steps;
+			var oldnew = step < steps/2 ? 'old' : 'new';
+			var phase = oldnew === 'old' ? step : steps - step - 1;
+
+			body.className = 'marks rev-' + rev + ' ' + oldnew + '-' + phase;
+		} else {
+			body.className = 'rev-0';
+		}
+
+		$('#bodyclass').text(body.className);
+	}
+
+	$('body').append("<div id='bodyclass' style='position:absolute;top:0;left:0;padding:0.5em;'></div>")
+
+	if (marks = parseInt(marks)) {
+		//if marks is a number, rotate through the revisions at time intervals
+		var start = Date.now();
+		setInterval(function() {
+			var time = Date.now() - start;
+			doMarks(Math.round(time / marks));
+		}, marks);
+	} else {
+		//otherwise go back and forth responding to arrow keys
+		var tick = -1;
+		$(document).on('keyup', function(evt) {
+			switch (evt.which) {
+				case 37: //left
+					tick = Math.max(-1, tick - 1);
+					doMarks(tick);
+					break;
+				
+				case 39: //right
+					++tick;
+					doMarks(tick);
+					break;
+			}
+		});
+	}
+}
 
 
 });
