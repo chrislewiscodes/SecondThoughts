@@ -2,13 +2,12 @@
 namespace SecondThoughts;
 
 require_once('diff.php');
+require_once('htmldiff/html_diff.php');
+require_once("parsedown.php");
 
-function strToArray($str) {
-	$result = array();
-	for ($i=0, $l=mb_strlen($str); $i<$l; $i++) {
-		$result[] = mb_substr($str, $i, 1);
-	}
-	return $result;
+function markdown($text) {
+	$markdown = new \Parsedown\Parsedown();
+	return $markdown->text($text);
 }
 
 function isUpper($str) {
@@ -27,104 +26,77 @@ function isAccent($str) {
 	return iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str) !== $str;
 }
 
-function getDiffs($arr1, $arr2, $sep=' ', $depth=0) {
-	$special = null;
-	$result = array();
-	$diffs = \PaulButler\diff($arr1, $arr2);
-	foreach ($diffs as $i => $diff) {
-		if (is_array($diff)) {
-			$deleted = implode($sep, $diff['d']);
-			$added = implode($sep, $diff['i']);
-			
-			if ($deleted === $added) {
-				//this happens sometimes
-				if (strlen($added)) {
-					$result[] = $added;
-				}
-				continue;
+/* getSpecial finds specific changes and updates the from/to text 
+ * to notate capitaliation, lowercase, punctuation changes, etc.
+ */
+
+function getSpecial($deleted, $added) {
+	//find single char diffs
+	$fromlen = mb_strlen($deleted);
+	$tolen = mb_strlen($added);
+
+	if ($fromlen !== $tolen) {
+		return "<del>$deleted</del><ins>$added</ins>";
+	}
+	
+	$output = "";
+	for ($i=0; $i < $fromlen; $i++) {
+		$from = mb_substr($deleted, $i, 1);
+		$to = mb_substr($added, $i, 1);
+		$special = null;
+		if (mb_strtolower($from) === mb_strtolower($to)) {
+			if (isUpper($from) and isLower($to)) {
+				$special = 'lowercase';
+			} elseif (isLower($from) and isUpper($to)) {
+				$special = 'capitalize';
 			}
-			
-			//find single char diffs
-			if (mb_strlen($deleted) <= 1 and mb_strlen($added) <= 1) {
-				if (mb_strtolower($deleted) === mb_strtolower($added)) {
-					if (isUpper($deleted) and isLower($added)) {
-						$special = 'lowercase';
-					} elseif (isLower($deleted) and isUpper($added)) {
-						$special = 'capitalize';
-					}
-				} elseif (isPunc($deleted) and isPunc($added)) {
-					$special = 'punctuation';
-				} elseif (isAccent($deleted) or isAccent($added)) {
-					$special = 'diacritic';
-				}
-				$result[] = array($deleted, $added, $special, $sep);
-			} elseif ($depth===0) {
-				//print "$deleted => $added\n";
-				$subdiffs = getDiffs(strToArray($deleted), strToArray($added), '', $depth+1);
-				//avoid over-optimizing simple substitutions
-				$specials = false;
-				foreach ($subdiffs as $sd) {
-					if (is_array($sd) and $sd[2]) {
-						$specials = true;
-						break;
-					}
-				}
-				if ($specials) {
-					$result = array_merge($result, $subdiffs);
-				} else {
-					$result[] = array($deleted, $added, null, $sep);
-				}
-			} else {
-				$result[] = array($deleted, $added, null, $sep);
-			}
+		} elseif (isPunc($from) and isPunc($to)) {
+			$special = 'punctuation';
+		} elseif (isAccent($from) or isAccent($to)) {
+			$special = 'diacritic';
+		}
+		
+		if ($special) {
+			$output .= "<del class='$special'>$from</del>";
+			$output .= "<ins class='$special'>$to</ins>";
+		} elseif ($from===$to) {
+			$output .= $from;
 		} else {
-			$result[] = $diff;
+			$output .= "<del>$from</del>";
+			$output .= "<ins>$to</ins>";
 		}
 	}
 	
-	$final = array();
-	$string = array();
-	foreach ($result as $word) {
-		if (is_array($word)) {
-			$final[] = implode($sep, $string);
-			$string = array();
-			$final[] = $word;
-		} else {
-			$string[] = $word;
+	return $output;	
+}
+
+function secondDiff($from, $to) {
+	$diff = html_diff($from, $to, true);
+	
+	preg_match_all(':(<del>(.*?)</del>)(<ins>(.*?)</ins>):', $diff, $matches, PREG_SET_ORDER);
+	
+	foreach ($matches as $m) {
+		list($whole, $olddel, $deleted, $oldins, $added) = $m;
+		
+		$replacement = getSpecial($deleted, $added);
+		
+		if ($replacement !== $whole) {
+			$diff = str_replace($whole, $replacement, $diff);
+		print "===========<br>\n";
+		print ($whole) . "<br>\n-----------<br>\n" . ($replacement) . "<br>\n";
 		}
 	}
-	$final[] = implode($sep, $string);
 	
-	return $final;
+	return $diff;
 }
 
 if (PHP_SAPI === 'cli') {
 	$f1 = file_get_contents($argv[1]);
 	$f2 = file_get_contents($argv[2]);
-	print htmlDiff($f1, $f2) . "\n";
-}
-
-function htmlDiff($f1, $f2) {
-	$diffs = getDiffs(preg_split('/\s+/', $f1), preg_split('/\s+/', $f2));
-	
-	$l = count($diffs);
-	
-	ob_start();
-	foreach ($diffs as $i => $diff) {
-		if (is_array($diff)) {
-			list($d, $a, $s, $sep) = $diff;
-			if (($i>=2 and $diffs[$i-2]===array($a,$d,$s,$sep)) or ($i<$l-2 and $diffs[$i+2]===array($a,$d,$s,$sep))) {
-				$s = 'transpose';
-			}
-			if ($d) {
-				print "$sep<del class='$s'>$d</del>$sep";
-			}
-			if ($a) {
-				print "$sep<ins class='$s'>$a</ins>$sep";
-			}
-		} else {
-			print $diff;
-		}
-	}
-	return ob_get_clean();
+	#print secondDiff($f1, $f2) . "\n";
+	print $f1 . "\n\n\n";
+	print markdown($f1) . "\n\n\n";
+	print $f2 . "\n\n\n";
+	print markdown($f2) . "\n\n\n";
+	print secondDiff(markdown($f1), markdown($f2), true);
 }

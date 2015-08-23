@@ -453,6 +453,10 @@ ins, del {
 	text-decoration: none;
 }
 
+span.diff-html-changed {
+	display: none;
+}
+
 .marks .revision ins, .marks .revision del {
 	position: relative;
 }
