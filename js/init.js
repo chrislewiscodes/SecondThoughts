@@ -250,55 +250,53 @@ $(window).scroll(function() {
 var pageCycle = setInterval(scrollHandler, 10);
 */
 
-if (marks) {
-	var steps = 6; //old-0 old-1 old-2 new-2 new-1 new-0
-	var body = document.getElementsByTagName('body')[0];
-	
-	var revs = 0;
-	while ($('.rev-' + (++revs)).length) {}
-	--revs;
+var steps = 6; //old-0 old-1 old-2 new-2 new-1 new-0
+var body = document.getElementsByTagName('body')[0];
 
-	function doMarks(tick) {
-		if (tick >= 0) {
-			var rev = revs - (Math.floor(tick / steps) % revs);
-			var step = tick % steps;
-			var oldnew = step < steps/2 ? 'old' : 'new';
-			var phase = oldnew === 'old' ? step : steps - step - 1;
+var revs = 0;
+while ($('.rev-' + (++revs)).length) {}
+--revs;
 
-			body.className = 'marks rev-' + rev + ' ' + oldnew + '-' + phase;
-		} else {
-			body.className = 'rev-0';
-		}
+function doMarks(tick) {
+	if (tick >= 0) {
+		var rev = revs - (Math.floor(tick / steps) % revs);
+		var step = tick % steps;
+		var oldnew = step < steps/2 ? 'old' : 'new';
+		var phase = oldnew === 'old' ? step : steps - step - 1;
 
-		$('#bodyclass').text(body.className);
-	}
-
-	$('body').append("<div id='bodyclass' style='position:absolute;top:0;left:0;padding:0.5em;'></div>")
-
-	if (marks = parseInt(marks)) {
-		//if marks is a number, rotate through the revisions at time intervals
-		var start = Date.now();
-		setInterval(function() {
-			var time = Date.now() - start;
-			doMarks(Math.round(time / marks));
-		}, marks);
+		body.className = 'marks rev-' + rev + ' ' + oldnew + '-' + phase;
 	} else {
-		//otherwise go back and forth responding to arrow keys
-		var tick = -1;
-		$(document).on('keyup', function(evt) {
-			switch (evt.which) {
-				case 37: //left
-					tick = Math.max(-1, tick - 1);
-					doMarks(tick);
-					break;
-				
-				case 39: //right
-					++tick;
-					doMarks(tick);
-					break;
-			}
-		});
+		body.className = 'rev-0';
 	}
+
+	$('#bodyclass').text(body.className);
+}
+
+$('body').append("<div id='bodyclass' style='position:absolute;top:0;left:0;padding:0.5em;'></div>")
+
+if (marks = parseInt(marks)) {
+	//if marks is a number, rotate through the revisions at time intervals
+	var start = Date.now();
+	setInterval(function() {
+		var time = Date.now() - start;
+		doMarks(Math.round(time / marks));
+	}, marks);
+} else {
+	//otherwise go back and forth responding to arrow keys
+	var tick = -1;
+	$(document).on('keyup', function(evt) {
+		switch (evt.which) {
+			case 37: //left
+				tick = Math.max(-1, tick - 1);
+				doMarks(tick);
+				break;
+			
+			case 39: //right
+				++tick;
+				doMarks(tick);
+				break;
+		}
+	});
 }
 
 
