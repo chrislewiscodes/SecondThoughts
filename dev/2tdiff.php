@@ -40,6 +40,9 @@ function getSpecial($deleted, $added) {
 	}
 	
 	$output = "";
+	$subfrom = "";
+	$subto = "";
+	$prevspecial = null;
 	for ($i=0; $i < $fromlen; $i++) {
 		$from = mb_substr($deleted, $i, 1);
 		$to = mb_substr($added, $i, 1);
@@ -56,16 +59,33 @@ function getSpecial($deleted, $added) {
 			$special = 'diacritic';
 		}
 		
-		if ($special) {
-			$output .= "<del class='$special'>$from</del>";
-			$output .= "<ins class='$special'>$to</ins>";
-		} elseif ($from===$to) {
-			$output .= $from;
+		if ($special === $prevspecial) {
+			$subfrom .= $from;
+			$subto .= $to;
 		} else {
-			$output .= "<del>$from</del>";
-			$output .= "<ins>$to</ins>";
+			if (strlen($subfrom) or strlen($subto)) {
+				if ($subfrom === $subto) {
+					$output .= $subfrom;
+				} else {
+					$output .= "<del class='$prevspecial'>$subfrom</del><ins class='$prevspecial'>$subto</ins>";
+				}
+			}
+			$subfrom = $from;
+			$subto = $to;
+		}
+		
+		$prevspecial = $special;
+	}
+
+	if (strlen($subfrom) or strlen($subto)) {
+		if ($subfrom === $subto) {
+			$output .= $subfrom;
+		} else {
+			$output .= "<del class='$prevspecial'>$subfrom</del><ins class='$prevspecial'>$subto</ins>";
 		}
 	}
+	
+	$output = preg_replace("/ class=''/", '', $output);
 	
 	return $output;	
 }
@@ -77,11 +97,19 @@ function secondDiff($from, $to) {
 	
 	foreach ($matches as $m) {
 		list($whole, $olddel, $deleted, $oldins, $added) = $m;
+
+		//move spaces outside of element
+		$addspace = '';
+		if (mb_substr($deleted, -1) === ' ' and mb_substr($added, -1) === ' ') {
+			$deleted = mb_substr($deleted, 0, -1);
+			$added = mb_substr($added, 0, -1);
+			$addspace = ' ';
+		}
 		
 		$replacement = getSpecial($deleted, $added);
 		
 		if ($replacement !== $whole) {
-			$diff = str_replace($whole, $replacement, $diff);
+			$diff = str_replace($whole, $replacement . $addspace, $diff);
 		print "===========<br>\n";
 		print ($whole) . "<br>\n-----------<br>\n" . ($replacement) . "<br>\n";
 		}
