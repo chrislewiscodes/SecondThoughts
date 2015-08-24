@@ -11,6 +11,8 @@ $languages = array('ES' => 'spanish', 'EN' => 'english');
 
 $language = isset($_GET['lang']) && isset($languages[$_GET['lang']]) ? $_GET['lang'] : 'ES';
 
+setcookie('visited', 'yes', null, '/');
+
 function section($section) {
 	global $revisions, $revisiondates, $diffs, $languages, $language;
 	
@@ -166,7 +168,7 @@ function section($section) {
 	</div>
 </div>
 
-<div id="overlay" class="overlay-on">
+<div id="overlay"<?php if (!isset($_COOKIE['visited'])): ?> class="overlay-on" <?php endif ?>>
 	<div id="message">
 		<div id="close">
 			<span></span>
