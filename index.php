@@ -7,10 +7,14 @@ $diffs = array();
 $revisions = array();
 $revisiondates = array();
 
+$languages = array('ES' => 'spanish', 'EN' => 'english');
+
+$language = isset($_GET['lang']) && isset($languages[$_GET['lang']]) ? $_GET['lang'] : 'ES';
+
 function section($section) {
-	global $revisions, $revisiondates, $diffs;
+	global $revisions, $revisiondates, $diffs, $languages, $language;
 	
-	$dir = "content/spanish/$section";
+	$dir = "content/{$languages[$language]}/$section";
 	$files = @scandir($dir, SCANDIR_SORT_DESCENDING);
 	if (!$files) {
 		//either directory does not exist, or has no files in it
@@ -105,7 +109,16 @@ function section($section) {
 			</li>
 		</ul>	
 	</div>
-	<div id="language-toggle">EN</div>
+	<div id="language-toggle"><?php 
+		foreach ($languages as $short=>$long) { 
+			if ($short !== $language) {
+				$args = parse_str($_SERVER['QUERY_STRING']);
+				$args['lang'] = $short;
+				print "<a href='?" . http_build_query($args) . "'>$short</a>";
+				break;
+			}
+		}
+	?></div>
 	<h1 id="logo"><?php section('header'); ?></h1>
 	<h1 id="background-type">Second Thoughts</h1>
 	
@@ -147,7 +160,9 @@ function section($section) {
 	<div id="counter">
 		Last Updated: 
 		<!-- this has to be done after the sections have been output above -->
-		<span class='revision_date'><?php echo date('F j, Y', $revisiondates[0]); ?></span>
+		<span class='revision rev-0'><?php echo date('F j, Y', $revisiondates[0]); ?></span>
+		<span class='revision rev-1'><?php echo date('F j, Y', $revisiondates[1]); ?></span>
+		<span class='revision rev-2'><?php echo date('F j, Y', $revisiondates[2]); ?></span>
 	</div>
 </div>
 

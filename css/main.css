@@ -142,8 +142,15 @@ ul { margin-bottom: 36px; }
 
 #language-toggle {
 	position: fixed;
-	bottom: 20px;
-	left: 20px;
+	bottom: 15px;
+	left: 15px;
+	padding: 5px;
+	z-index: 1000;
+	background-color: white;
+}
+
+#language-toggle a {
+	text-decoration: none;
 }
 
 /* navigation */
@@ -429,10 +436,16 @@ img {
 	display: none;
 }
 
-.rev-0 .revision.rev-0,
-.rev-1 .revision.rev-1,
-.rev-2 .revision.rev-2 {
+.rev-0 div.revision.rev-0,
+.rev-1 div.revision.rev-1,
+.rev-2 div.revision.rev-2 {
 	display: block;
+}
+
+.rev-0 span.revision.rev-0,
+.rev-1 span.revision.rev-1,
+.rev-2 span.revision.rev-2 {
+	display: inline;
 }
 
 /* marks */
