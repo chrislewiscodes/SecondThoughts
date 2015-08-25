@@ -498,15 +498,15 @@ span.diff-html-changed {
 
 /* marks */
 
-.marks:not(.old-0) .revision del {
+.marks:not(.old-0) .revision del:not(.punctuation):not(.capitalize):not(.lowercase) {
 	background: url(/img/black-dot.gif) 0px 10px repeat-x;
 }
 
-.marks:not(.old-0) .revision .large del {
+.marks:not(.old-0) .revision .large del:not(.punctuation):not(.capitalize):not(.lowercase) {
 	background: url(/img/black-dot.gif) 0px 16px repeat-x;
 }
 
-.marks:not(.new-0) .revision ins {
+.marks:not(.new-0) .revision ins:not(.punctuation):not(.capitalize):not(.lowercase) {
 	background: url(/img/black-dot.gif) left bottom repeat-x;
 }
 
@@ -520,6 +520,7 @@ span.diff-html-changed {
 	height: 34px;
 	background: url(/img/black-punctuation.gif) left bottom no-repeat;
 	background-size: cover;
+    content: " ";
 }
 
 .marks.old-1 .revision del.capitalize::after,
@@ -533,6 +534,7 @@ span.diff-html-changed {
 	width: 10px;
     height: 25px;
     background: url(/img/black-3-line.gif) left bottom repeat-x;
+    content: " ";
 }
 
 /*
@@ -569,6 +571,7 @@ span.diff-html-changed {
     background: url(/img/black-lowercase.gif) left top no-repeat;
     background-size: contain;
     width: 14px;
+    content: " ";
 }
 
 /*

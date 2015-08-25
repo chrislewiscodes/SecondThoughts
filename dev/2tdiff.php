@@ -39,82 +39,89 @@ function getSpecial($deleted, $added) {
 		return "<del>$deleted</del><ins>$added</ins>";
 	}
 	
+	$doOutput = function($from, $to, $special) {
+		if (strlen($from) or strlen($to)) {
+			if ($from === $to) {
+				return $from;
+			} elseif ($special) {
+				return "<del class='$special'>$from</del><ins class='$special'>$to</ins>";
+			} else {
+				return "<del>$from</del><ins>$to</ins>";
+			}
+		}
+	};
+	
 	$output = "";
 	$subfrom = "";
 	$subto = "";
 	$prevspecial = null;
+	
 	for ($i=0; $i < $fromlen; $i++) {
 		$from = mb_substr($deleted, $i, 1);
 		$to = mb_substr($added, $i, 1);
 		$special = null;
-		if (mb_strtolower($from) === mb_strtolower($to)) {
-			if (isUpper($from) and isLower($to)) {
-				$special = 'lowercase';
-			} elseif (isLower($from) and isUpper($to)) {
-				$special = 'capitalize';
-			}
-		} elseif (isPunc($from) and isPunc($to)) {
-			$special = 'punctuation';
-		} elseif (isAccent($from) or isAccent($to)) {
-			$special = 'diacritic';
-		}
-		
-		if ($special === $prevspecial) {
-			$subfrom .= $from;
-			$subto .= $to;
-		} else {
-			if (strlen($subfrom) or strlen($subto)) {
-				if ($subfrom === $subto) {
-					$output .= $subfrom;
-				} else {
-					$output .= "<del class='$prevspecial'>$subfrom</del><ins class='$prevspecial'>$subto</ins>";
+		if ($from !== $to) {
+			if (mb_strtolower($from) === mb_strtolower($to)) {
+				if (isUpper($from) and isLower($to)) {
+					$special = 'lowercase';
+				} elseif (isLower($from) and isUpper($to)) {
+					$special = 'capitalize';
 				}
+			} elseif (isPunc($from) and isPunc($to)) {
+				$special = 'punctuation';
+			} elseif (isAccent($from) or isAccent($to)) {
+				$special = 'diacritic';
 			}
+		}
+
+		if ($special !== $prevspecial) {
+			//char has definitely changed
+			$output .= $doOutput($subfrom, $subto, $prevspecial);
+			$prevspecial = $special;
 			$subfrom = $from;
 			$subto = $to;
+		} else {
+			$subto .= $to;
+			$subfrom .= $from;
 		}
-		
-		$prevspecial = $special;
 	}
 
-	if (strlen($subfrom) or strlen($subto)) {
-		if ($subfrom === $subto) {
-			$output .= $subfrom;
-		} else {
-			$output .= "<del class='$prevspecial'>$subfrom</del><ins class='$prevspecial'>$subto</ins>";
-		}
-	}
-	
-	$output = preg_replace("/ class=''/", '', $output);
+	$output .= $doOutput($subto, $subfrom, $prevspecial);
 	
 	return $output;	
 }
 
 function secondDiff($from, $to) {
 	$diff = html_diff($from, $to, true);
-	
-	preg_match_all(':(<del>(.*?)</del>)(<ins>(.*?)</ins>):', $diff, $matches, PREG_SET_ORDER);
+
+	preg_match_all(':(<del>(.*?)</del>)(<ins>(.*?)</ins>):u', $diff, $matches, PREG_SET_ORDER);
 	
 	foreach ($matches as $m) {
 		list($whole, $olddel, $deleted, $oldins, $added) = $m;
 
-		//move spaces outside of element
-		$addspace = '';
-		if (mb_substr($deleted, -1) === ' ' and mb_substr($added, -1) === ' ') {
-			$deleted = mb_substr($deleted, 0, -1);
-			$added = mb_substr($added, 0, -1);
-			$addspace = ' ';
-		}
+		// sometimes this regexp picks up multiple <del> clauses
+		// so zap any extra ones
 		
+		$whole = preg_replace(':^.*</del>.*<del>:', '<del>', $whole);
+		$olddel = preg_replace(':^.*</del>.*<del>:', '<del>', $olddel);
+		$deleted = preg_replace(':^.*</del>.*<del>:', '', $deleted);
+
 		$replacement = getSpecial($deleted, $added);
 		
 		if ($replacement !== $whole) {
 			$diff = str_replace($whole, $replacement . $addspace, $diff);
-		print "===========<br>\n";
-		print ($whole) . "<br>\n-----------<br>\n" . ($replacement) . "<br>\n";
+			if (PHP_SAPI === 'cli') {
+				print "===========<br>\n";
+				print ($whole) . "<br>\n-----------<br>\n" . ($replacement) . "<br>\n";
+			}
 		}
 	}
-	
+
+	$diff = preg_replace(': +</(ins|del)>:u', '</$1> ', $diff);
+
+	//find added/deleted punctuation
+	$diff = preg_replace(':<(ins|del)>(\p{P})</(ins|del)>:u', '<$1 class="punctuation">$2</$3>', $diff);
+		
 	return $diff;
 }
 
@@ -122,9 +129,7 @@ if (PHP_SAPI === 'cli') {
 	$f1 = file_get_contents($argv[1]);
 	$f2 = file_get_contents($argv[2]);
 	#print secondDiff($f1, $f2) . "\n";
-	print $f1 . "\n\n\n";
-	print markdown($f1) . "\n\n\n";
-	print $f2 . "\n\n\n";
-	print markdown($f2) . "\n\n\n";
+	print $f1 . "\n-------------\n" . markdown($f1) . "\n=======================\n";
+	print $f2 . "\n-------------\n" . markdown($f2) . "\n=======================\n";
 	print secondDiff(markdown($f1), markdown($f2), true);
 }

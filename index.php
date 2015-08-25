@@ -43,7 +43,7 @@ function section($section) {
 		
 		$revisions[$i][$section] = markdown(file_get_contents($fullpath));
 		if ($i > 0) {
-			$diffs[$i][$section] = html_diff($revisions[$i][$section], $revisions[$i-1][$section]);
+			$diffs[$i][$section] = secondDiff($revisions[$i][$section], $revisions[$i-1][$section]);
 		} 
 
 		print "<div class='revision rev-{$i}'>";
