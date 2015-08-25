@@ -11,7 +11,26 @@ $languages = array('ES' => 'spanish', 'EN' => 'english');
 
 $language = isset($_GET['lang']) && isset($languages[$_GET['lang']]) ? $_GET['lang'] : 'ES';
 
+$translations = array(
+	'updated' => 'actualizado',
+);
+
 setcookie('visited', 'yes', null, '/');
+
+function translate($text, $case='original') {
+	global $language, $translations;
+	if (!isset($translations[$text])) {
+		return $text;
+	}
+	if ($language === 'ES') {
+		$text = $translations[$text];
+	}
+	if (function_exists($case)) {
+		return $case($text);
+	} else {
+		return $text;
+	}
+}
 
 function section($section) {
 	global $revisions, $revisiondates, $diffs, $languages, $language;
@@ -160,11 +179,11 @@ function section($section) {
 	</div>
 
 	<div id="counter">
-		Last Updated: 
+		<?php print translate('updated', 'ucfirst') ?>: 
 		<!-- this has to be done after the sections have been output above -->
-		<span class='revision rev-0'><?php echo date('F j, Y', $revisiondates[0]); ?></span>
-		<span class='revision rev-1'><?php echo date('F j, Y', $revisiondates[1]); ?></span>
-		<span class='revision rev-2'><?php echo date('F j, Y', $revisiondates[2]); ?></span>
+		<span class='revision rev-0'><?php echo date('j-n-Y', $revisiondates[0]); ?></span>
+		<span class='revision rev-1'><?php echo date('j-n-Y', $revisiondates[1]); ?></span>
+		<span class='revision rev-2'><?php echo date('j-n-Y', $revisiondates[2]); ?></span>
 	</div>
 </div>
 
