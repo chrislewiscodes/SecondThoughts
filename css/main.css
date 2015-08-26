@@ -313,12 +313,17 @@ ul { margin-bottom: 36px; }
 
 #counter {
 	position: fixed;
-	bottom: 15px;
-    right: 15px;
+	bottom: 5px;
+	right: 5px;
 
-	/*-webkit-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	transform: rotate(-90deg);*/
+	-webkit-transform: rotate(90deg) translateX(1em);
+	-ms-transform: rotate(90deg) translateX(1em);
+	transform: rotate(90deg) translateX(1em);
+	
+	-webkit-transform-origin: top right;
+	-ms-transform-origin: top right;
+	transform-origin: top right;
+	
 	z-index: 1000;
 }
 
