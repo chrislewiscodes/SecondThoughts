@@ -166,12 +166,16 @@ function section($section) {
 			</div>
 		</div>
 		<div class="col coltwo">
-			<h2 class="section-title"><?php print translate('program', 'ucfirst'); ?></h2>		
-			<?php section('programa'); ?>
+			<div class="program section">
+				<h2 class="section-title"><?php print translate('program', 'ucfirst'); ?></h2>		
+				<?php section('programa'); ?>
+			</div>
 		</div>
 		<div class="col colthree">
-			<h2 class="section-title"><?php print translate('artists', 'ucfirst'); ?></h2>
-			<?php section('artists'); ?>
+			<div class="artists section">
+				<h2 class="section-title"><?php print translate('artists', 'ucfirst'); ?></h2>
+				<?php section('artists'); ?>
+			</div>
 		</div>
 		<div class="col colfour">
 			<div class="more-info section">
