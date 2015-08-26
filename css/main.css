@@ -33,6 +33,10 @@ h1, h2, h3, h4 {
 	line-height: 24px;
 }
 
+h2 {
+	font-weight: bold;
+}
+
 #message {
 	font-family: arial, helvetica, sans-serif;
 	font-weight: bold;
@@ -53,7 +57,7 @@ ul, li {
 
 ul { margin-bottom: 36px; }
 
-.exhibition h2, .publication h2, .large {
+.coltwo h1 {
 	font-size: 30px;
 	line-height: 40px;	
 	text-align: left;	
@@ -309,12 +313,12 @@ ul { margin-bottom: 36px; }
 
 #counter {
 	position: fixed;
-	bottom: 105px;
-	right: -80px;
+	bottom: 15px;
+    right: 15px;
 
-	-webkit-transform: rotate(-90deg);
+	/*-webkit-transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
-	transform: rotate(-90deg);
+	transform: rotate(-90deg);*/
 	z-index: 1000;
 }
 
@@ -390,7 +394,6 @@ h1#background-type.show {
 }
 
 .colfour a{
-
 }
 
 .colfour a::after{
@@ -406,7 +409,7 @@ h1#background-type.show {
 }
 
 
-.colfour a::hover::after {
+.colfour a:hover:after {
 	content: " \2192";
 	width: 23px;
 	display: inline-block;
@@ -481,7 +484,7 @@ span.diff-html-changed {
 
 .marks.old-2 .revision del, 
 .marks.new-2 .revision ins {
-	color: rgba(0,0,0,0.3);
+	color: rgba(0,0,0,0);
 }
 
 .marks.old-2 .revision .image, 
@@ -498,16 +501,16 @@ span.diff-html-changed {
 
 /* marks */
 
-.marks:not(.old-0) .revision del:not(.punctuation):not(.capitalize):not(.lowercase) {
-	background: url(/img/black-dot.gif) 0px 10px repeat-x;
+.marks:not(.old-0) .revision del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
+	background: url(/img/black-dot.gif) 0px 8px repeat-x;
 }
 
-.marks:not(.old-0) .revision .large del:not(.punctuation):not(.capitalize):not(.lowercase) {
+.marks:not(.old-0) .revision .large del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
 	background: url(/img/black-dot.gif) 0px 16px repeat-x;
 }
 
-.marks:not(.new-0) .revision ins:not(.punctuation):not(.capitalize):not(.lowercase) {
-	background: url(/img/black-dot.gif) left bottom repeat-x;
+.marks:not(.new-0) .revision ins:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
+	background: url(/img/black-dot.gif) 0px 15px repeat-x;
 }
 
 .marks.new-1 .revision ins.punctuation::after,
@@ -515,7 +518,7 @@ span.diff-html-changed {
 	display: block;
 	position: absolute;
 	left: -14px;
-	top: 0px;
+    top: -3px;
 	width: 32px;
 	height: 34px;
 	background: url(/img/black-punctuation.gif) left bottom no-repeat;
@@ -530,12 +533,30 @@ span.diff-html-changed {
     display: block;
     position: absolute;
     left: 0px;
-    top: 3px;
+    top: 0px;
 	width: 10px;
     height: 25px;
     background: url(/img/black-3-line.gif) left bottom repeat-x;
     content: " ";
 }
+
+/* diacritics */
+
+.marks.old-1 .revision del.diacritic::after,
+.marks.old-2 .revision del.diacritic::after,
+.marks.new-1 .revision ins.diacritic::after,
+.marks.new-2 .revision ins.diacritic::after {
+	display: block;
+	position: absolute;
+	left: -11px;
+    top: -7px;
+	width: 32px;
+	height: 34px;
+	background: url(/img/black-punctuation.gif) left bottom no-repeat;
+	background-size: cover;
+    content: " ";
+}
+
 
 /*
 .marks .revision .umlaut {
@@ -749,15 +770,15 @@ and (max-width : 1200px)  {
 and (min-width : 768px) 
 and (max-width : 1023px)  { 
 	body {
-		font-size: 22px;
-		line-height: 32px;
+		font-size: 18px;
+		line-height: 26px;
 	}
 
 	h1, h2, h3, h4 {
 		margin-top: 100px;
 		margin-bottom: 30px;
-		font-size: 22px;
-		line-height: 32px;
+		font-size: 18px;
+		line-height: 26px;
 	}
 
 	h4 {
@@ -765,7 +786,7 @@ and (max-width : 1023px)  {
 	}
 
 	h2, #message {
-		font-size: 22px;
+		font-size: 18px;
 	}
 
 	p { margin-bottom: 40px; }
@@ -777,19 +798,29 @@ and (max-width : 1023px)  {
 	ul { margin-bottom: 40px; }
 
 	.large {
-		font-size: 32px;
-		line-height: 42px;		
+		font-size: 26px;
+		line-height: 36px;		
 	}	
 
 	#counter {
 		font-size: 12px;
-	    bottom: 118px;
-	    right: -85px;	
+	    bottom: 15px;
+	    right: 15px;	
 	}
 
 	.content {
 		padding: 0px;
 		width: calc(100% - 64px);
+
+		-webkit-column-count: 2;
+		-webkit-column-gap: 40px;
+		-webkit-column-fill: auto;
+		-moz-column-count: 2;
+		-moz-column-gap: 40px;
+		-moz-column-fill: auto;
+		column-count: 2;
+		column-gap: 40px;
+		column-fill: auto;
 	}
 
 	h1#logo {
@@ -799,6 +830,10 @@ and (max-width : 1023px)  {
 	/* page structure */
 
 	.col {
+		display: inline-block;
+		-webkit-column-break-inside: avoid;
+		-moz-column-break-inside: avoid;
+		column-break-inside: avoid;		
 		float: none;
 		margin-left: 0px;
 		margin-bottom: 250px;
@@ -806,7 +841,9 @@ and (max-width : 1023px)  {
 
 	.colone, .colthree, .coltwo, .colfour {
 		width: 100%;
+		float: left;
 	}
+
 
 	.visit-2, .visit-3 {
 		margin-top: 100px;
@@ -862,8 +899,8 @@ and (max-width : 767px) {
 
 	#counter {
 		font-size: 12px;
-	    bottom: 118px;
-	    right: -85px;
+	    bottom: 15px;
+	    right: 15px;
 	}
 
 
