@@ -64,6 +64,15 @@ windowHeight = $(window).height();
 $('#message').css('top', windowHeight/2-messageHeight/1.5+'px');
 
 
+/* make links open new windows */
+
+$('.more-info a, .contact a').attr('target', '_blank');
+
+/* wrap images in .image */
+
+$('ins img, del img').wrap('<div class="image"></div>');
+
+
 function getUrlParameter(sParam)
 {
 	var result;
