@@ -19,6 +19,14 @@ $language = isset($_GET['lang']) && isset($languages[$_GET['lang']]) ? $_GET['la
 
 $translations = array(
 	'updated' => 'actualizado',
+	'update' => 'actualización',
+	'project' => 'proyecto',
+	'curatorial' => 'curatorial',
+	'credits' => 'créditos',
+	'program' => 'programa',
+	'artists' => 'artistas',
+	'more info' => 'mas info',
+	'contact' => 'contact',
 );
 
 setcookie('visited', 'yes', null, '/');
@@ -109,43 +117,25 @@ function section($section) {
 	<div id="nav">
 		<ul>
 			<li>
-				<a href="#" data-link="gen-description">Proyecto</a>
+				<a href="#" data-link="gen-description"><?php translate('project', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="curatorial">Curatorial</a>
+				<a href="#" data-link="curatorial"><?php translate('curatorial', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="credits">Creditos</a>
+				<a href="#" data-link="credits"><?php translate('credits', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="visit-1">Visita 1</a>
+				<a href="#" data-link="program"><?php translate('program', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="visit-2">Visita 2</a>
+				<a href="#" data-link="artists"><?php translate('artists', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="visit-3">Visita 3</a>
+				<a href="#" data-link="more-info"><?php translate('more info', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="exhibition">Exhibición</a>
-			</li>
-			<li>
-				<a href="#" data-link="publication">Publicación</a>
-			</li>
-			<li>
-				<a href="#" data-link="artist-1">David Reinfurt</a>
-			</li>
-			<li>
-				<a href="#" data-link="artist-2">Daniel van der Velden</a> 
-			</li>
-			<li>
-				<a href="#" data-link="artist-3">Constant Dullaart</a>
-			</li>
-			<li>
-				<a href="#" data-link="more-info">Mas Info</a>
-			</li>
-			<li>
-				<a href="#" data-link="contact">Contact</a>
+				<a href="#" data-link="contact"><?php translate('contact', 'ucfirst'); ?></a>
 			</li>
 		</ul>	
 	</div>
@@ -163,33 +153,33 @@ function section($section) {
 	<div class="content">
 		<div class="col colone">
 			<div class="gen-description section">
-				<h2>Proyecto</h2>			
+				<h2><?php print translate('project', 'ucfirst'); ?></h2>			
 				<?php section('proyecto'); ?>
 			</div>
 			<div class="curatorial section">
-				<h2>Curatorial</h2>
+				<h2><?php print translate('curatorial', 'ucfirst'); ?></h2>
 				<?php section('curatorial'); ?>
 			</div>
 			<div class="credits section">
-				<h2>Créditos</h2>
+				<h2><?php print translate('credits', 'ucfirst'); ?></h2>
 				<?php section('creditos'); ?>
 			</div>
 		</div>
 		<div class="col coltwo">
-			<h2 class="section-title">Programa</h2>		
+			<h2 class="section-title"><?php print translate('program', 'ucfirst'); ?></h2>		
 			<?php section('programa'); ?>
 		</div>
 		<div class="col colthree">
-			<h2 class="section-title">Artistas</h2>
+			<h2 class="section-title"><?php print translate('artists', 'ucfirst'); ?></h2>
 			<?php section('artists'); ?>
 		</div>
 		<div class="col colfour">
 			<div class="more-info section">
-				<h2>Mas info</h2>
+				<h2><?php print translate('more info', 'ucfirst'); ?></h2>
 				<?php section('info'); ?>
 			</div>
 			<div class="contact section">
-				<h2>Contact</h2>
+				<h2><?php print translate('contact', 'ucfirst'); ?></h2>
 				<?php section('contacto'); ?>
 			</div>
 		</div>		
