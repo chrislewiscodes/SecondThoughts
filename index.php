@@ -117,25 +117,25 @@ function section($section) {
 	<div id="nav">
 		<ul>
 			<li>
-				<a href="#" data-link="gen-description"><?php translate('project', 'ucfirst'); ?></a>
+				<a href="#" data-link="gen-description"><?php print translate('project', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="curatorial"><?php translate('curatorial', 'ucfirst'); ?></a>
+				<a href="#" data-link="curatorial"><?php print translate('curatorial', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="credits"><?php translate('credits', 'ucfirst'); ?></a>
+				<a href="#" data-link="credits"><?php print translate('credits', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="program"><?php translate('program', 'ucfirst'); ?></a>
+				<a href="#" data-link="program"><?php print translate('program', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="artists"><?php translate('artists', 'ucfirst'); ?></a>
+				<a href="#" data-link="artists"><?php print translate('artists', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="more-info"><?php translate('more info', 'ucfirst'); ?></a>
+				<a href="#" data-link="more-info"><?php print translate('more info', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="contact"><?php translate('contact', 'ucfirst'); ?></a>
+				<a href="#" data-link="contact"><?php print translate('contact', 'ucfirst'); ?></a>
 			</li>
 		</ul>	
 	</div>
