@@ -3,6 +3,12 @@ namespace SecondThoughts;
 
 require_once("dev/2tdiff.php");
 
+if (isset($_GET['refresh'])) {
+	if (isset($_COOKIE['visited'])) {
+		unset($_COOKIE['visited']);
+	}
+}
+
 $diffs = array();
 $revisions = array();
 $revisiondates = array();
@@ -17,6 +23,11 @@ $translations = array(
 
 setcookie('visited', 'yes', null, '/');
 
+function urlWithArgs($newargs) {
+	parse_str($_SERVER['QUERY_STRING'], $oldargs);
+	return '?' . http_build_query(array_merge($oldargs, $newargs));
+}
+
 function translate($text, $case='original') {
 	global $language, $translations;
 	if (!isset($translations[$text])) {
@@ -30,6 +41,14 @@ function translate($text, $case='original') {
 	} else {
 		return $text;
 	}
+}
+
+function lastUpdated() {
+	global $revisiondates;
+	print translate('updated', 'ucfirst') . ": ";
+	print "<span class='revision rev-0'>" . date('j–n–Y', $revisiondates[0]) . "</span>";
+	print "<span class='revision rev-1'>" . date('j–n–Y', $revisiondates[1]) . "</span>";
+	print "<span class='revision rev-2'>" . date('j–n–Y', $revisiondates[2]) . "</span>";
 }
 
 function section($section) {
@@ -133,9 +152,7 @@ function section($section) {
 	<div id="language-toggle"><?php 
 		foreach ($languages as $short=>$long) { 
 			if ($short !== $language) {
-				$args = parse_str($_SERVER['QUERY_STRING']);
-				$args['lang'] = $short;
-				print "<a href='?" . http_build_query($args) . "'>$short</a>";
+				print "<a href='" . urlWithArgs(array('lang' => $short, 'shownote' => '1')) . "'>$short</a>";
 				break;
 			}
 		}
@@ -179,24 +196,21 @@ function section($section) {
 	</div>
 
 	<div id="counter">
-		<?php print translate('updated', 'ucfirst') ?>: 
-		<!-- this has to be done after the sections have been output above -->
-		<span class='revision rev-0'><?php echo date('j-n-Y', $revisiondates[0]); ?></span>
-		<span class='revision rev-1'><?php echo date('j-n-Y', $revisiondates[1]); ?></span>
-		<span class='revision rev-2'><?php echo date('j-n-Y', $revisiondates[2]); ?></span>
+		<?php lastUpdated(); ?>
 	</div>
 </div>
 
-<div id="overlay"<?php if (!isset($_COOKIE['visited'])): ?> class="overlay-on" <?php endif ?>>
+<div id="overlay"<?php if (!isset($_COOKIE['visited']) or isset($_GET['shownote'])): ?> class="overlay-on" <?php endif ?>>
 	<div id="message">
 		<div id="close">
 			<span></span>
 		</div>
-		<p>
-			Este sitio está en constante cambio; su contenido es editado y publicado en tiempo real. Asegúrate de revisarlo constantemente para mantenerte informado de futuras actualizaciones.<br /><br />
-			Last Updated: 
-			<!-- this has to be done after the sections have been output above -->
-			<span class='revision_date'><?php echo date('F j, Y', $revisiondates[0]); ?></span>
+		<p><?php if ($language === 'EN'): ?>
+			This site is constantly changing; its content is edited and published in real time. Constantly refresh it to stay informed of our updates.
+		<?php else: ?>
+			Este sitio está en constante cambio; su contenido es editado y publicado en tiempo real. Asegúrate de revisarlo constantemente para mantenerte informado de futuras actualizaciones.
+		<?php endif; ?><br /><br />
+			<?php lastUpdated(); ?>
 		</p>
 	</div>
 </div>
