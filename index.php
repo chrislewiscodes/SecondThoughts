@@ -148,6 +148,7 @@ function section($section) {
 		}
 	?></div>
 	<h1 id="logo"><?php section('header'); ?></h1>
+	<a id="a47" href="http://alumnos47.org/" target="_blank" alt="Fundación Alumnos47">A47</a>
 	<h1 id="background-type">Second Thoughts</h1>
 	
 	<div class="content">
@@ -186,6 +187,7 @@ function section($section) {
 				<h2><?php print translate('contact', 'ucfirst'); ?></h2>
 				<?php section('contacto'); ?>
 			</div>
+			<a id="alumnos" href="http://alumnos47.org/" target="_blank" alt="Fundación Alumnos47">Alumnos</a>
 		</div>		
 	</div>
 
