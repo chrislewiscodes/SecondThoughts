@@ -95,7 +95,8 @@ function getUrlParameter(sParam)
 
 var marks = getUrlParameter('marks');
 
-var steps = 6; //old-0 old-1 old-2 new-2 new-1 new-0
+var steps = ['old-0', 'old-2', 'new-2', 'new-1', 'new-0'];
+var stepcount = steps.length;
 var body = document.getElementsByTagName('body')[0];
 
 var revs = 0;
@@ -104,12 +105,11 @@ while ($('.rev-' + (++revs)).length) {}
 
 function doMarks(tick) {
 	if (tick >= 0) {
-		var rev = revs - (Math.floor(tick / steps) % revs);
-		var step = tick % steps;
-		var oldnew = step < steps/2 ? 'old' : 'new';
-		var phase = oldnew === 'old' ? step : steps - step - 1;
+		var rev = revs - (Math.floor(tick / stepcount) % revs);
+		var step = tick % stepcount;
+		var phase = steps[step];
 
-		body.className = 'marks rev-' + rev + ' ' + oldnew + '-' + phase;
+		body.className = 'marks rev-' + rev + ' ' + phase;
 	} else {
 		body.className = 'rev-0';
 	}
