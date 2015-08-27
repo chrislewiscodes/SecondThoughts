@@ -110,6 +110,8 @@ function section($section) {
 	<title>Second Thoughts</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<meta name="viewport" content="initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/init.js"></script>
 </head>
 <body class='rev-0'>
 <div id="extra-parameters">
@@ -211,6 +213,8 @@ function section($section) {
 	</div>
 </div>
 
+<script> positionMessage(); </script>
+
 <?php 
 	print "<!-- "; 
 	var_dump($revisions); 
@@ -218,7 +222,5 @@ function section($section) {
 	print " -->";
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="js/init.js"></script>
 </body>
 </html>
