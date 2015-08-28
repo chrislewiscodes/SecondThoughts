@@ -1,9 +1,10 @@
-var windowWidth = $(window).width();
-var windowHeight = $(window).height();
+var $window = $(window);
+var windowWidth = $window.width();
+var windowHeight = $window.height();
 
-$(window).on('resize', function() {
-	windowWidth = $(window).width();
-	windowHeight = $(window).height();
+$window.on('resize', function() {
+	windowWidth = $window.width();
+	windowHeight = $window.height();
 })
 
 function positionMessage() {
@@ -11,7 +12,7 @@ function positionMessage() {
 	$('#message').css('top', windowHeight/2-messageHeight/1.5+'px');
 }
 
-$(document).ready(function() {
+$(function() {
 
 /* randomly rotate second thoughts */
 var number = 1 + Math.floor(Math.random() * 360);
@@ -106,16 +107,22 @@ function getUrlParameter(sParam)
 }  
 
 var marks = getUrlParameter('marks');
+var debug = getUrlParameter('debug');
 
 var steps = ['old-0', 'old-2', 'new-2', 'new-1', 'new-0'];
 var stepcount = steps.length;
 var body = document.getElementsByTagName('body')[0];
 
+var tick = 0;
+var interval = parseInt(marks) || 333;
+var going = false;
+var timeout;
+
 var revs = 0;
 while ($('.rev-' + (++revs)).length) {}
 --revs;
 
-function doMarks(tick) {
+function doMarks() {
 	if (tick >= 0) {
 		var rev = revs - (Math.floor(tick / stepcount) % revs);
 		var step = tick % stepcount;
@@ -126,36 +133,58 @@ function doMarks(tick) {
 		body.className = 'rev-0';
 	}
 
-	$('#bodyclass').text(body.className);
+	debug && $('#bodyclass').text(body.className);
+
+	if (going) {
+		++tick;
+		timeout = setTimeout(doMarks, interval);
+	}
 }
 
-$('body').append("<div id='bodyclass' style='position:absolute;top:0;left:0;padding:0.5em;'></div>")
-
-if (marks = parseInt(marks)) {
-	//if marks is a number, rotate through the revisions at time intervals
-	var start = Date.now();
-	setInterval(function() {
-		var time = Date.now() - start;
-		doMarks(Math.round(time / marks));
-	}, marks);
-} else {
-	//otherwise go back and forth responding to arrow keys
-	var tick = -1;
-	$(document).on('keyup', function(evt) {
-		switch (evt.which) {
-			case 37: //left
-				tick = Math.max(-1, tick - 1);
-				doMarks(tick);
-				break;
-			
-			case 39: //right
-				++tick;
-				doMarks(tick);
-				break;
-		}
-	});
+function startRotation() {
+	going = true;
+	tick = 0;
+	doMarks();
 }
 
+function endRotation() {
+	going = false;
+	clearTimeout(timeout);
+	tick = -1;
+	doMarks();
+}
 
+window.startRotation = startRotation;
+window.endRotation = endRotation;
+
+debug && $('body').append("<div id='bodyclass' style='position:absolute;top:0;left:0;padding:0.5em;'></div>")
+
+// go back and forth responding to arrow keys
+$(document).on('keyup', function(evt) {
+	switch (evt.which) {
+		case 37: //left
+			going = false;
+			tick = Math.max(-1, tick - 1);
+			doMarks();
+			break;
+		
+		case 39: //right
+			going = false;
+			++tick;
+			doMarks();
+			break;
+	}
+});
+
+
+//scroll magic
+var scrollTimeout;
+var lastScroll = $window.scrollTop();
+$window.on('scroll', function(evt) {
+	var nowScroll = $window.scrollTop();
+	going || startRotation();
+	scrollTimeout && clearTimeout(scrollTimeout);
+	scrollTimeout = setTimeout(endRotation, interval);
+});
 });
 
