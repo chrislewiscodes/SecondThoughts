@@ -60,13 +60,25 @@ $('#nav').find('a').click(function(){
 	if (event.preventDefault) { event.preventDefault(); } else { event.returnValue = false; }
 })
 
-$('#close').click(function(){
+function closeOverlay() {
 	$('#overlay').removeClass('overlay-on');
-	window.pageCycle && clearInterval(pageCycle); //clear interval	 
 	$('h1#background-type').addClass('show');
+	$(document).off('.close');	
+}
 
+$(document).on('click.close', function(evt) {
+	var target = $(evt.target);
+	//close overlay by clicking either the close button or outside of the overlay
+	if (target.closest('#close').length || !target.closest('#message').length) {
+		closeOverlay();
+	}
 });
 
+$(document).on('keyup.close', function(evt) {
+	if (evt.which === 27) { //ESC
+		closeOverlay();
+	}
+});
 
 //just in case any dimensions have changed
 positionMessage();
