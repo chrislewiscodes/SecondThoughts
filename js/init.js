@@ -61,29 +61,6 @@ $('#nav').find('a').click(function(){
 	if (event.preventDefault) { event.preventDefault(); } else { event.returnValue = false; }
 })
 
-function closeOverlay() {
-	$('#overlay').removeClass('overlay-on');
-	$('h1#background-type').addClass('show');
-	$(document).off('.close');	
-}
-
-$(document).on('click.close', function(evt) {
-	var target = $(evt.target);
-	//close overlay by clicking either the close button or outside of the overlay
-	if (target.closest('#close').length || !target.closest('#message').length) {
-		closeOverlay();
-	}
-});
-
-$(document).on('keyup.close', function(evt) {
-	if (evt.which === 27) { //ESC
-		closeOverlay();
-	}
-});
-
-//just in case any dimensions have changed
-positionMessage();
-
 /* make links open new windows */
 
 $('.more-info a, .contact a').attr('target', '_blank');
@@ -186,5 +163,40 @@ $window.on('scroll', function(evt) {
 	scrollTimeout && clearTimeout(scrollTimeout);
 	scrollTimeout = setTimeout(endRotation, interval);
 });
+
+
+
+//only do this stuff if the overlay is showing
+$('#overlay.overlay-on').each(function() {
+	//just in case any dimensions have changed
+	positionMessage();
+	startRotation();
+
+	function closeOverlay() {
+		$('#overlay').removeClass('overlay-on');
+		$('h1#background-type').addClass('show');
+		$(document).off('.close');	
+		endRotation();
+	}
+	
+
+	$(document).on('click.close', function(evt) {
+		var target = $(evt.target);
+		//close overlay by clicking either the close button or outside of the overlay
+		if (target.closest('#close').length || !target.closest('#message').length) {
+			closeOverlay();
+		}
+	});
+	
+	$(document).on('keyup.close', function(evt) {
+		if (evt.which === 27) { //ESC
+			closeOverlay();
+		}
+	});
+});
+
+
+
+
 });
 
