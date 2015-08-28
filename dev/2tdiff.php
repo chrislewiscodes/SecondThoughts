@@ -31,6 +31,8 @@ require_once('htmldiff/html_diff.php');
 require_once("parsedown.php");
 
 function markdown($text) {
+	$text = str_replace("\r\n", "\n", $text);
+	$text = str_replace("\r", "\n", $text);
 	$markdown = new \Parsedown\Parsedown();
 	return $markdown->text($text);
 }
@@ -64,14 +66,20 @@ function getSpecial($deleted, $added) {
 		return "<del>$deleted</del><ins>$added</ins>";
 	}
 	
-	$doOutput = function($from, $to, $special) {
+	$doOutput = function($from, $to, $special) {		
 		if (strlen($from) or strlen($to)) {
+			$addspace = '';
+			while (substr($from, -1) === ' ' and substr($to, -1) === ' ') {
+				$addspace .= ' ';
+				$from = substr($from, 0, -1);
+				$to = substr($to, 0, -1);
+			}
 			if ($from === $to) {
-				return $from;
+				return $from . $addspace;
 			} elseif ($special) {
-				return "<del class='$special'>$from</del><ins class='$special'>$to</ins>";
+				return "<del class='$special'>$from</del><ins class='$special'>$to</ins>$addspace";
 			} else {
-				return "<del>$from</del><ins>$to</ins>";
+				return "<del>$from</del><ins>$to</ins>$addspace";
 			}
 		}
 	};
@@ -134,15 +142,14 @@ function secondDiff($from, $to) {
 		$replacement = getSpecial($deleted, $added);
 		
 		if ($replacement !== $whole) {
-			$diff = str_replace($whole, $replacement . $addspace, $diff);
+			$diff = str_replace($whole, $replacement, $diff);
 			if (PHP_SAPI === 'cli') {
-				print "===========<br>\n";
-				print ($whole) . "<br>\n-----------<br>\n" . ($replacement) . "<br>\n";
+				print ($whole) . "|  --->  " . ($replacement) . "|\n";
 			}
 		}
 	}
 
-	$diff = preg_replace(': +</(ins|del)>:u', '</$1> ', $diff);
+	//$diff = preg_replace(': +</(ins|del)>:u', '</$1> ', $diff);
 
 	//find added/deleted punctuation
 	$diff = preg_replace(':<(ins|del)>(\p{P})</(ins|del)>:u', '<$1 class="punctuation">$2</$3>', $diff);
