@@ -177,7 +177,7 @@ function section($section) {
 		<div class="col colthree">
 			<div class="artists section">
 				<h2 class="section-title"><?php print translate('artists', 'ucfirst'); ?></h2>
-				<?php section('artists'); ?>
+				<?php section('artistas'); ?>
 			</div>
 		</div>
 		<div class="col colfour">

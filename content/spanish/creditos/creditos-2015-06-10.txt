@@ -1,5 +1,6 @@
-Second Thoughts es un proyecto de Federico Pérez Villoro desarrollado con el apoyo de Alumnos47. 
+The Second Thoughts Series es un proyecto iniciado y curado por Federico Perez Villoro llevado a cabo gracias al apoyo de Alumnos 47. 
 
-Extendemos nuestros especiales agradecimientos a Centro por facilitar sus espacios y contribuir con la difusión de las actividades y a nuestros patrocinadores oficiales. Así mismo agradecemos a todas las personas que han hecho posible la realizacion del proyecto, en especial a: Alicia Cheng, Sarah Gephart, Mariana Pérez Villoro, Ana Paula Tovar, Humberto Moro, Mario Navarro, Christopher Hamamoto, David Reinfurt, 
+Extendemos nuestros especiales agradecimientos al museo tamayo por facilitar sus espacios y difundir las actividades y a nuestros patrocinadores oficiales. Agradecemos también a las personas que han hecho posible el proyecto, en especial a Alicia Cheng, Sarah Gephart, Mariana Pérez Villoro, Ana Paula Tovar, Humberto Moro, Mario Navarro, Uriel Fernández Lignian y Christopher Hamamoto.
 
-La identidad visual y el sitio web fueron diseñados y desarrollados por Christopher Hamamoto.
+
+La identidad visual y el sitio web fueron diseñados por Christopher Hamamoto
