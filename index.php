@@ -24,7 +24,7 @@ $translations = array(
 	'curatorial' => 'curatorial',
 	'credits' => 'créditos',
 	'program' => 'programa',
-	'artists' => 'artistas',
+	'participants' => 'participantes',
 	'more info' => 'mas info',
 	'contact' => 'contact',
 );
@@ -130,7 +130,7 @@ function section($section) {
 				<a href="#" data-link="program"><?php print translate('program', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="artists"><?php print translate('artists', 'ucfirst'); ?></a>
+				<a href="#" data-link="participants"><?php print translate('participants', 'ucfirst'); ?></a>
 			</li>
 			<li>
 				<a href="#" data-link="more-info"><?php print translate('more info', 'ucfirst'); ?></a>
@@ -174,9 +174,9 @@ function section($section) {
 			</div>
 		</div>
 		<div class="col colthree">
-			<div class="artists section">
-				<h2><?php print translate('artists', 'ucfirst'); ?></h2>
-				<?php section('artistas'); ?>
+			<div class="participants section">
+				<h2><?php print translate('participants', 'ucfirst'); ?></h2>
+				<?php section('participantes'); ?>
 			</div>
 		</div>
 		<div class="col colfour">
