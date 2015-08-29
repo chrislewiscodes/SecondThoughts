@@ -143,7 +143,7 @@ function section($section) {
 	<div id="language-toggle"><?php 
 		foreach ($languages as $short=>$long) { 
 			if ($short !== $language) {
-				print "<a href='" . urlWithArgs(array('lang' => $short, 'shownote' => '1')) . "'>$short</a>";
+				print "<a href='" . urlWithArgs(array('lang' => $short)) . "'>$short</a>";
 				break;
 			}
 		}
@@ -197,7 +197,7 @@ function section($section) {
 	</div>
 </div>
 
-<div id="overlay"<?php if (!isset($_COOKIE['visited']) or isset($_GET['shownote'])): ?> class="overlay-on" <?php endif ?>>
+<div id="overlay"<?php if (true or !isset($_COOKIE['visited']) or isset($_GET['shownote'])): ?> class="overlay-on" <?php endif ?>>
 	<div id="message">
 		<div id="close">
 			<span></span>
