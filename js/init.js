@@ -98,7 +98,7 @@ var steps = ['old-0', 'old-2', 'new-2', 'new-1', 'new-0'];
 var stepcount = steps.length;
 
 var tick = 0;
-var interval = parseInt(marks) || 333;
+var interval = parseInt(marks) || 250;
 var going = false;
 var timeout;
 
