@@ -234,7 +234,7 @@ ul { margin-bottom: 36px; }
 
 #nav {
 	width: 100%;
-	height: 100vh;
+	height: 0;
 	overflow: scroll;
 	background: rgba(255,255,255,1);
 	position: fixed;
@@ -287,6 +287,7 @@ ul { margin-bottom: 36px; }
 #nav.active {
 	pointer-events: all;
 	opacity: 1;
+	height: 100vh;
 }
 
 #nav.active ul{
@@ -668,66 +669,6 @@ body #extra-parameters.images .image {
 	background: white;
 }
 
-
-
-/* hover rotation */
-
-/*
-.hovering #v1 .hover-item, 
-.hovering #v2 .hover-item, 
-.hovering #v3 .hover-item,
-.hovering #v4 .hover-item,
-.v1 .hovering #current .hover-item,
-.v2 .hovering #current .hover-item,
-.v3 .hovering #current .hover-item,
-.v4 .hovering #current .hover-item
-{
-	opacity: 0;
-}
-
-
-.v1 .hovering #current,
-.v2 .hovering #current,
-.v3 .hovering #current,
-.v4 .hovering #current
-{
-	pointer-events: none;
-}
-
-.v1 .hovering #v1 .content .col .section,
-.v2 .hovering #v2 .content .col .section,
-.v3 .hovering #v3 .content .col .section,
-.v4 .hovering #v4 .content .col .section
-{
-	opacity: 0;
-}
-
-.v1 .hovering #v1,
-.v2 .hovering #v2,
-.v3 .hovering #v3,
-.v4 .hovering #v4
-{
-	pointer-events: all;
-}
-
-.v1 .hovering #v1 .content .col .section.hover-item,
-.v2 .hovering #v2 .content .col .section.hover-item,
-.v3 .hovering #v3 .content .col .section.hover-item,
-.v4 .hovering #v4 .content .col .section.hover-item
-{
-	opacity: 1;
-	pointer-events: all;
-}
-
-*/
-
-
-/* set sections to a height */
-
-/*.section {
-	height: 10000px;
-	display: block;
-}*/
 
 /* media queries */
 
