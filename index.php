@@ -26,7 +26,7 @@ $translations = array(
 	'program' => 'programa',
 	'participants' => 'participantes',
 	'more info' => 'mas info',
-	'contact' => 'contact',
+	'contact' => 'contacto',
 );
 
 setcookie('visited', 'yes', null, '/');
