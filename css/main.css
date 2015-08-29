@@ -297,7 +297,7 @@ ul { margin-bottom: 36px; }
 
 /* selected items */
 
-.navigated .section, .navigated .section-title {
+.navigated .section {
 	opacity: 0;
 }
 

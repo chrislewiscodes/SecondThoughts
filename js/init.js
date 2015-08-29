@@ -14,6 +14,9 @@ function positionMessage() {
 
 $(function() {
 
+var body = document.getElementsByTagName('body')[0];
+var $body = $('body');
+
 /* randomly rotate second thoughts */
 var number = 1 + Math.floor(Math.random() * 360);
 
@@ -32,7 +35,7 @@ $('#nav-toggle').click(function() {
 $('#logo').click(function() {
 	$('#nav-toggle').removeClass('active');
 	$('#nav').removeClass('active'); 
-	$('body').removeClass();	
+	body.className = 'rev-0';
 
 	$('#nav').find('a').removeClass('selected');
 	$('.section').removeClass('selected');
@@ -40,22 +43,27 @@ $('#logo').click(function() {
 })
 
 /* nav links */
-$('#nav').find('a').click(function(){
-
+$('#nav a').click(function(){
+	var a = $(this);
+	
 	// close nav
 	$('#nav-toggle').removeClass('active');
 	$('#nav').removeClass('active');   
-	navItem = $(this).attr('data-link');
-	$('body').removeClass();	
+	navItem = a.attr('data-link');
+	$body.removeClass('navigated');	
+	$('.section.selected').removeClass('selected');
 
-	if( $(this).hasClass('selected')) {
-		$('#nav').find('a').removeClass('selected');
-		$('.section').removeClass('selected');
-
+	if(a.hasClass('selected')) {
+		a.removeClass('selected');
+		$body.animate({'scrollTop':0}, {'duration': 500});
 	} else {
-		$('body').addClass('navigated');
-		$(this).addClass('selected');
-		$('.'+navItem+'').addClass('selected');
+		var section = $('.section.'+navItem);
+		$body.addClass('navigated');
+		$('#nav a.selected').removeClass('selected');
+		a.addClass('selected');
+		section.addClass('selected');
+		
+		$body.animate({'scrollTop':section.offset().top}, {'duration': 500});
 	}
 
 	if (event.preventDefault) { event.preventDefault(); } else { event.returnValue = false; }
@@ -88,7 +96,6 @@ var debug = getUrlParameter('debug');
 
 var steps = ['old-0', 'old-2', 'new-2', 'new-1', 'new-0'];
 var stepcount = steps.length;
-var body = document.getElementsByTagName('body')[0];
 
 var tick = 0;
 var interval = parseInt(marks) || 333;
@@ -134,7 +141,7 @@ function endRotation() {
 window.startRotation = startRotation;
 window.endRotation = endRotation;
 
-debug && $('body').append("<div id='bodyclass' style='position:absolute;top:0;left:0;padding:0.5em;'></div>")
+debug && $body.append("<div id='bodyclass' style='position:absolute;top:0;left:0;padding:0.5em;'></div>")
 
 // go back and forth responding to arrow keys
 $(document).on('keyup', function(evt) {
@@ -158,6 +165,9 @@ $(document).on('keyup', function(evt) {
 var scrollTimeout;
 var lastScroll = $window.scrollTop();
 $window.on('scroll', function(evt) {
+	if ($body.hasClass('navigated')) {
+		return;
+	}
 	var nowScroll = $window.scrollTop();
 	going || startRotation();
 	scrollTimeout && clearTimeout(scrollTimeout);

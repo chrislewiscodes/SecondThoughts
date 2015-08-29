@@ -169,13 +169,13 @@ function section($section) {
 		</div>
 		<div class="col coltwo">
 			<div class="program section">
-				<h2 class="section-title"><?php print translate('program', 'ucfirst'); ?></h2>		
+				<h2><?php print translate('program', 'ucfirst'); ?></h2>		
 				<?php section('programa'); ?>
 			</div>
 		</div>
 		<div class="col colthree">
 			<div class="artists section">
-				<h2 class="section-title"><?php print translate('artists', 'ucfirst'); ?></h2>
+				<h2><?php print translate('artists', 'ucfirst'); ?></h2>
 				<?php section('artistas'); ?>
 			</div>
 		</div>
