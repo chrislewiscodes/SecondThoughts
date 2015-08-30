@@ -456,7 +456,7 @@ class HTMLDiffer {
 		unset($to);
 
 		$diffengine = new WikiDiff3();
-		$differences = $this->preProcess($diffengine->diff_range($domfrom->getDiffLines(), $domto->getDiffLines()));
+		$differences = /*$this->preProcess*/($diffengine->diff_range($domfrom->getDiffLines(), $domto->getDiffLines()));
 		unset($xml_parser, $diffengine);
 
 		$domdiffer = new TextNodeDiffer($domto, $domfrom);
