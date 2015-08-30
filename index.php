@@ -54,8 +54,9 @@ function translate($text, $case='original') {
 function lastUpdated() {
 	global $revisiondates;
 	print translate('updated', 'ucfirst') . ": ";
-	print "<span class='revision rev-1 rev-0'>" . date('j–n–Y', $revisiondates[0]) . "</span>";
-	print "<span class='revision rev-2'>" . date('j–n–Y', $revisiondates[1]) . "</span>";
+	print "<span class='last-updated rev-0'>" . date('d-m–Y', $revisiondates[0]) . "</span>";
+	print "<span class='last-updated rev-1'>" . date('d-m–Y', $revisiondates[1]) . "</span>";
+	print "<span class='last-updated rev-2'>" . date('d-m–Y', $revisiondates[2]) . "</span>";
 }
 
 function section($section) {
@@ -149,7 +150,7 @@ function section($section) {
 		}
 	?></div>
 	<h1 id="logo"><?php section('header'); ?></h1>
-	<a id="alumnos" href="http://alumnos47.org/" target="_blank" alt="Fundación Alumnos47">Alumnos</a>
+	<a id="a47" href="http://alumnos47.org/" target="_blank" alt="Fundación Alumnos47">A47</a>
 	<h1 id="background-type">Second Thoughts</h1>
 	
 	<div class="content">
@@ -188,6 +189,7 @@ function section($section) {
 				<h2><?php print translate('contact', 'ucfirst'); ?></h2>
 				<?php section('contacto'); ?>
 			</div>
+			<a id="alumnos" href="http://alumnos47.org/" target="_blank" alt="Fundación Alumnos47">Alumnos</a>
 		</div>		
 	</div>
 
