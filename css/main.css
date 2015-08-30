@@ -80,7 +80,7 @@ ul { margin-bottom: 36px; }
 
 /* logos */
 
-#a47 {
+/*#a47 {
 	margin: 0px auto;
 	width: 55px;
 	height: 58.5px;
@@ -90,15 +90,19 @@ ul { margin-bottom: 36px; }
 	background-size: contain;
 
     transform: translate(560px, -80px);
-}
+}*/
 
 #alumnos {
-	width: 155.75px;
-	height: 22.5px;
+	margin: 0px auto;
+	
+    width: 315px;
+    height: 25px;
 	background: url(/img/alumnos.png) no-repeat center center;
 	text-indent: -1000000px;
 	display: block;
 	background-size: contain;
+
+	transform: translate(170px, -63px);
 }
 
 
@@ -184,7 +188,7 @@ ul { margin-bottom: 36px; }
 /* navigation */
 
 #nav-toggle { 
-	/*border: 2px solid black;*/
+	border: 2px solid black;
 	position: fixed; right: 20px; top: 20px; 
 	z-index: 1000;
 	cursor: pointer; 
@@ -340,6 +344,7 @@ ul { margin-bottom: 36px; }
 	position: fixed;
 	bottom: 5px;
 	right: 5px;
+	font-size: 16.5px;
 
 	-webkit-transform: rotate(90deg) translateX(1em);
 	-ms-transform: rotate(90deg) translateX(1em);
@@ -555,11 +560,13 @@ span.diff-html-changed {
 .marks:not(.old-0) .revision del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
 	background: url(/img/black-dot.gif) 0px 8px repeat-x;
 	background: url(/img/curve.png) center 2px repeat-x;
+	background: none;
 }
 
 .marks:not(.old-0) .coltwo .revision h1 del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
 	background: url(/img/black-dot.gif) 0px 8px repeat-x;
 	background: url(/img/curve.png) center 11px repeat-x;
+	background: none;	
 }
 
 .marks:not(.old-0) .revision .large del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
@@ -767,8 +774,9 @@ and (max-width : 1200px)  {
 	}
 
 	#alumnos {
-		width: 155.75px;
-		height: 22.5px;
+		width: 275px;
+    	height: 20px;
+    	transform: translate(150px, -54px);
 	}
 
 
@@ -861,6 +869,7 @@ and (max-width : 1023px)  {
 	}	
 
 	#message {
+		height: 250px;
 	}
 
 	#nav {
@@ -881,9 +890,12 @@ and (max-width : 1023px)  {
 	}
 
 	#alumnos {
-		width: 234px;
-		height: 34px;
+	    transform: translate(183px, -67px);
+	    width: 335px;
+		height: 25px;
 	}
+
+
 
 
 }
@@ -982,6 +994,8 @@ and (max-width : 767px) {
     	padding: 200px 15px;
 	}
 
+	#nav ul li{ padding: 0px; }
+
 	/* logos */
 
 	#a47 {
@@ -994,8 +1008,16 @@ and (max-width : 767px) {
 	}
 
 	#alumnos {
-		width: 234px;
-		height: 34px;
+		position: absolute;
+		top: 100px;
+		right: 25px;
+	    transform: translate(0px, 0px);
+
+		background: url(/img/alumnos-small.png) no-repeat center center;
+		background-size: cover;
+
+		width: 135px;
+		height: 20px;
 	}	
 
 }

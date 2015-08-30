@@ -51,15 +51,16 @@ $('#nav a').click(function(){
 	$('#nav').removeClass('active');   
 	navItem = a.attr('data-link');
 	$body.removeClass('navigated');	
-	$('.section.selected').removeClass('selected');
+	//$('.section.selected').removeClass('selected');
 
 	if(a.hasClass('selected')) {
 		a.removeClass('selected');
 		$body.animate({'scrollTop':0}, {'duration': 500});
+		$('.section.selected').removeClass('selected');
 	} else {
 		var section = $('.section.'+navItem);
 		$body.addClass('navigated');
-		$('#nav a.selected').removeClass('selected');
+		//$('#nav a.selected').removeClass('selected');
 		a.addClass('selected');
 		section.addClass('selected');
 		
