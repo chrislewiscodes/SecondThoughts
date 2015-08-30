@@ -51,16 +51,15 @@ $('#nav a').click(function(){
 	$('#nav').removeClass('active');   
 	navItem = a.attr('data-link');
 	$body.removeClass('navigated');	
-	//$('.section.selected').removeClass('selected');
+	$('.section.selected').removeClass('selected');
 
 	if(a.hasClass('selected')) {
 		a.removeClass('selected');
 		$body.animate({'scrollTop':0}, {'duration': 500});
-		$('.section.selected').removeClass('selected');
 	} else {
 		var section = $('.section.'+navItem);
 		$body.addClass('navigated');
-		//$('#nav a.selected').removeClass('selected');
+		$('#nav a.selected').removeClass('selected');
 		a.addClass('selected');
 		section.addClass('selected');
 		
@@ -72,7 +71,12 @@ $('#nav a').click(function(){
 
 /* make links open new windows */
 
-$('.more-info a, .contact a').attr('target', '_blank');
+$('a').each(function() {
+	var a = $(this);
+	if (a.attr('href').substr(0, 4) === 'http') {
+		a.attr('target', '_blank');
+	}
+});
 
 /* wrap images in .image */
 
@@ -166,7 +170,7 @@ $(document).on('keyup', function(evt) {
 var scrollTimeout;
 var lastScroll = $window.scrollTop();
 $window.on('scroll', function(evt) {
-	if ($body.hasClass('navigated')) {
+	if ($body.hasClass('navigated') || $('#overlay.overlay-on').length) {
 		return;
 	}
 	var nowScroll = $window.scrollTop();
