@@ -10,6 +10,7 @@ if (isset($_GET['refresh'])) {
 }
 
 $diffs = array();
+$plaintext = array();
 $revisions = array();
 $revisiondates = array();
 
@@ -60,7 +61,7 @@ function lastUpdated() {
 }
 
 function section($section) {
-	global $revisions, $revisiondates, $diffs, $languages, $language;
+	global $revisions, $plaintext, $revisiondates, $diffs, $languages, $language;
 	
 	$dir = "content/{$languages[$language]}/$section";
 	$files = @scandir($dir, SCANDIR_SORT_DESCENDING);
@@ -86,10 +87,16 @@ function section($section) {
 		if (!isset($revisiondates[$i]) or $date > $revisiondates[$i]) {
 			$revisiondates[$i] = $date;
 		}
-		
-		$revisions[$i][$section] = markdown(file_get_contents($fullpath));
+	
+		$plaintext[$i][$section] = file_get_contents($fullpath);
+		$revisions[$i][$section] = markdown($plaintext[$i][$section]);
 		if ($i > 0) {
-			$diffs[$i][$section] = secondDiff($revisions[$i][$section], $revisions[$i-1][$section]);
+			$temp = markdown(plainTextDiff($plaintext[$i][$section], $plaintext[$i-1][$section]));
+			
+			//fix bug that inserts mailto links
+			$temp = preg_replace('~<a href="mailto:(/?(?:ins|del)>[^"]*)">.*?</a>~', '<$1>', $temp);
+
+			$diffs[$i][$section] = $temp;
 		} 
 
 		print "<div class='revision rev-{$i}'>";

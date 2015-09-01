@@ -22,6 +22,7 @@ namespace PaulButler;
 function diff($old, $new){
     $matrix = array();
     $maxlen = 0;
+    //print "===============================\n" . count($old) . " " . count($new) . "\nMemory: " . number_format(memory_get_usage()) . "\n";
     foreach($old as $oindex => $ovalue){
         $nkeys = array_keys($new, $ovalue);
         foreach($nkeys as $nindex){
@@ -34,6 +35,9 @@ function diff($old, $new){
             }
         }   
     }
+    
+    unset($matrix); //this is a huge memory hog that we can forget before recursing
+    
     if($maxlen == 0) return array(array('d'=>$old, 'i'=>$new));
     return array_merge(
         diff(array_slice($old, 0, $omax), array_slice($new, 0, $nmax)),

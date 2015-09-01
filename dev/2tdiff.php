@@ -49,6 +49,14 @@ function isPunc($str) {
 	return (bool)preg_match('/^\p{P}+$/u', $str);
 }
 
+function isSpace($str) {
+	return (bool)preg_match('/^\s+$/', $str);
+}
+
+function isParagraphBreak($str) {
+	return strpos($str, "\n\n") !== false;
+}
+
 function isAccent($str) {
 	return iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str) !== $str;
 }
@@ -157,11 +165,145 @@ function secondDiff($from, $to) {
 	return $diff;
 }
 
+function strToArray($str) {
+	$result = array();
+	for ($i=0, $l=mb_strlen($str); $i<$l; $i++) {
+		$result[] = mb_substr($str, $i, 1);
+	}
+	return $result;
+}
+
+function cleanupText($text) {
+	$text = trim($text);
+	$text = str_replace("\r\n", "\n", $text);
+	$text = str_replace("\r", "\n", $text);
+	$text = preg_replace('/\n\s+\n/', "\n\n", $text);
+	return $text;
+}
+
+function plainTextDiff($t1, $t2) {
+	$MARKDOWN = '[\*\#\-\+]';
+	$result = array();
+
+	$t1 = cleanupText($t1);
+	$t2 = cleanupText($t2);
+	
+	$startsame = '';
+	$endsame = '';
+	
+	$i = 0;
+	$l = min(mb_strlen($t1), mb_strlen($t2));
+	while ($i < $l && mb_substr($t1, $i, 1) === mb_substr($t2, $i, 1)) {
+		++$i;
+	}
+
+	if ($i) {
+		$startsame = mb_substr($t1, 0, $i);
+		$t1 = mb_substr($t1, $i);
+		$t2 = mb_substr($t2, $i);
+		$l -= $i;
+		$result[] = $startsame;
+	}
+
+	$i=0;
+	while ($i < $l && mb_substr($t1, -$i-1, 1) === mb_substr($t2, -$i-1, 1)) {
+		++$i;
+	}
+
+	if ($i) {
+		$endsame = mb_substr($t1, -$i);
+		$t1 = mb_substr($t1, 0, -$i);
+		$t2 = mb_substr($t2, 0, -$i);
+		$l -= $i;
+	}	
+
+	// call out paragraph separations as real chars
+	$words1 = preg_split('/[^\S\n]+/', $t1);
+	$words2 = preg_split('/[^\S\n]+/', $t2);
+	
+	$diffwords = \PaulButler\diff($words1, $words2);
+	
+	foreach ($diffwords as $worddiff) {
+		if (is_array($worddiff)) {
+			$deleted = implode(' ', $worddiff['d']);
+			$added = implode(' ', $worddiff['i']);
+			
+			$diffs = \PaulButler\diff(strToArray($deleted), strToArray($added));
+			
+			$subresult = array();
+			foreach ($diffs as $i => $diff) {
+				if (is_array($diff)) {
+					$deleted = implode('', $diff['d']);
+					$added = implode('', $diff['i']);
+					$special = null;
+					
+					$l1 = count($diff['d']);
+					$l2 = count($diff['i']);
+					
+					if ($deleted === $added) {
+						//this happens sometimes
+						if (strlen($added)) {
+							$subresult[] = $added;
+						}
+					} elseif (mb_strtolower($deleted) === mb_strtolower($added)) {
+						if (isUpper($deleted) and isLower($added)) {
+							$special = 'lowercase';
+						} elseif (isLower($deleted) and isUpper($added)) {
+							$special = 'capitalize';
+						}
+					} elseif ($l1 <= 1 and $l2 <= 1 and (isPunc($deleted) or isPunc($added))) {
+						$special = 'punctuation';
+					} elseif ($l1 <= 1 and $l2 <= 1 and (isAccent($deleted) or isAccent($added))) {
+						$special = 'diacritic';
+					}
+					
+					//paragraph insertion/deletion
+					$deleted = preg_replace('/\n{2,}/', "</del><del class='paragraph'></del>\n\n<del>", $deleted);
+					$added = preg_replace('/\n{2,}/', "</ins><ins class='paragraph'></ins>\n\n<ins>", $added);
+
+					//don't cross lines
+					$deleted = preg_replace(':(?<!</del>)\n(?!<del>):', "</del>\n<del>", $deleted);
+					$added = preg_replace(':(?<!</ins>)\n(?!<ins>):', "</ins>\n<ins>", $added);
+		
+					if ($deleted !== "") {
+						$subresult[] = "<del" . ($special ? " class='$special'" : "") . ">$deleted</del>";
+					}
+					if ($added !== "") {
+						$subresult[] = "<ins" . ($special ? " class='$special'" : "") . ">$added</ins>";
+					}
+				} else {
+					$subresult[] = $diff;
+				}
+			}
+			
+			$result[] = implode('', $subresult);
+		} else {
+			$result[] = $worddiff;
+		}
+	}
+	
+	$result[] = $endsame;
+	
+	$result = implode(' ', $result);
+	$result = str_replace('<ins></ins>', '', $result);
+	$result = str_replace('<del></del>', '', $result);
+	
+	//try not to fuck up markdown syntax
+	$result = preg_replace('/^<(del|ins)>(' . $MARKDOWN . '+)/m', '$2<$1>', $result);
+	$result = preg_replace('/^(' . $MARKDOWN . '+)<(del|ins)>\s*/m', '$1 <$2>', $result);
+
+	//only do paragraph breaks in actual paragraphs
+	$result = preg_replace(':^(' . $MARKDOWN . '+.*)<(ins|del) class=[\'"]paragraph["\']><(ins|del)>$:', '$1', $result);
+
+	return $result;
+}
+
 if (PHP_SAPI === 'cli') {
 	$f1 = file_get_contents($argv[1]);
 	$f2 = file_get_contents($argv[2]);
 	#print secondDiff($f1, $f2) . "\n";
 	print $f1 . "\n-------------\n" . markdown($f1) . "\n=======================\n";
 	print $f2 . "\n-------------\n" . markdown($f2) . "\n=======================\n";
-	print secondDiff(markdown($f1), markdown($f2), true);
+	//print secondDiff(markdown($f1), markdown($f2), true);
+	print plainTextDiff($f1, $f2);
 }
