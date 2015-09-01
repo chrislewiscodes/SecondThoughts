@@ -557,24 +557,18 @@ span.diff-html-changed {
 
 /* marks */
 
-.marks:not(.old-0) .revision del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
-	background: url(/img/black-dot.gif) 0px 8px repeat-x;
-	background: url(/img/curve.png) center 2px repeat-x;
+.marks:not(.old-0) .revision del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
+	background: url(/img/black-dot.gif) 0px 0.5em repeat-x;
+	background: url(/img/curve.png) center 0.125em repeat-x;
 	background: none;
 }
 
-.marks:not(.old-0) .coltwo .revision h1 del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
-	background: url(/img/black-dot.gif) 0px 8px repeat-x;
-	background: url(/img/curve.png) center 11px repeat-x;
-	background: none;	
+.marks:not(.old-0) .revision h1 del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
+	background: url(/img/black-dot.gif) 0px 0.5em repeat-x;
 }
 
-.marks:not(.old-0) .revision .large del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
-	background: url(/img/black-dot.gif) 0px 16px repeat-x;
-}
-
-.marks:not(.new-0) .revision ins:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic) {
-	background: url(/img/black-dot.gif) 0px 15px repeat-x;
+.marks:not(.new-0) .revision ins:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
+	background: url(/img/black-dot.gif) 0px 1em repeat-x;
 }
 
 .marks.new-1 .revision ins.punctuation::after,
@@ -659,17 +653,21 @@ span.diff-html-changed {
     content: " ";
 }
 
-/*
-.marks .revision .return {
+.marks.old-1 .revision del.paragraph::after,
+.marks.old-2 .revision del.paragraph::after,
+.marks.new-1 .revision ins.paragraph::after,
+.marks.new-2 .revision ins.paragraph::after {
     width: 25px;
-    height: 45px;
-    background: url(/img/pillcrow.png) left top no-repeat;
+    height: 25px;
+    background: url(/img/black-pillcrow.png) left top no-repeat;
     display: block;
-    position: relative;
+    position: absolute;
     left: 0px;
     top: 0px;
+    content: " ";
+    background-size: contain;
 }
-*/
+
 
 /* image */
 
