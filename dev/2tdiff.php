@@ -197,6 +197,19 @@ function plainTextDiff($t1, $t2, $htmlize=false) {
 	$t1 = cleanupText($t1);
 	$t2 = cleanupText($t2);
 	
+	$links = array();
+	
+	//find links and replace them with hashes
+	//world's most confusing regexp
+	preg_match_all('/\[[^\]]+\]\([^\)]+\)/', $t1 . $t2, $matches, PREG_SET_ORDER);
+	foreach ($matches as $m) {
+		$links[$m[0]] = md5($m[0]);
+	}
+	foreach ($links as $link => $hash) {
+		$t1 = str_replace($link, " LINK:$hash:LINK ", $t1);
+		$t2 = str_replace($link, " LINK:$hash:LINK ", $t2);
+	}
+	
 	// call out paragraph separations as real chars
 	$t1 = str_replace("\n", PARA, $t1);
 	$t2 = str_replace("\n", PARA, $t2);
@@ -282,6 +295,19 @@ function plainTextDiff($t1, $t2, $htmlize=false) {
 	$result = preg_replace("~<(?:ins|del) class='paragraph'></(?:ins|del)>(<(?:ins|del)>$MARKDOWN)~", "\n\n\$1", $result);
 	$result = preg_replace('/^<(del|ins)>(' . $MARKDOWN . '+)/m', '$2<$1>', $result);
 	$result = preg_replace('/^(' . $MARKDOWN . '+)<(del|ins)>\s*/m', '$1 <$2>', $result);
+	
+	//restore links
+	$result = preg_replace_callback('/LINK:(.+?):LINK/', function($m) {
+		$str = $m[0];
+		$str = preg_replace(':<del.*?>.+?</del>:', '', $str);
+		$str = preg_replace(':</?ins.*?>:', '', $str);
+		return $str;
+	}, $result);
+	
+	foreach ($links as $link => $hash) {
+		$result = str_replace("LINK:$hash:LINK", $link, $result);
+	}
+	
 	
 	if ($htmlize) {
 		$result = markdown($result);
