@@ -91,12 +91,7 @@ function section($section) {
 		$plaintext[$i][$section] = file_get_contents($fullpath);
 		$revisions[$i][$section] = markdown($plaintext[$i][$section]);
 		if ($i > 0) {
-			$temp = markdown(plainTextDiff($plaintext[$i][$section], $plaintext[$i-1][$section]));
-			
-			//fix bug that inserts mailto links
-			$temp = preg_replace('~<a href="mailto:(/?(?:ins|del)>[^"]*)">.*?</a>~', '<$1>', $temp);
-
-			$diffs[$i][$section] = $temp;
+			$diffs[$i][$section] = plainTextDiff($plaintext[$i][$section], $plaintext[$i-1][$section], true);
 		} 
 
 		print "<div class='revision rev-{$i}'>";

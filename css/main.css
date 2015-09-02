@@ -653,19 +653,31 @@ span.diff-html-changed {
     content: " ";
 }
 
-.marks.old-1 .revision del.paragraph::after,
-.marks.old-2 .revision del.paragraph::after,
-.marks.new-1 .revision ins.paragraph::after,
-.marks.new-2 .revision ins.paragraph::after {
-    width: 25px;
-    height: 25px;
+
+.marks.old-1 .revision del.paragraph,
+.marks.old-2 .revision del.paragraph,
+.marks.new-1 .revision ins.paragraph,
+.marks.new-2 .revision ins.paragraph {
     background: url(/img/black-pillcrow.png) left top no-repeat;
-    display: block;
-    position: absolute;
+    display: inline-block;
+    position: relative;
     left: 0px;
     top: 0px;
-    content: " ";
+    width: 25px;
+    height: 25px;
     background-size: contain;
+ }
+
+.marks.old-0 .revision del.paragraph::after,
+.marks.old-1 .revision del.paragraph::after,
+.marks.old-2 .revision del.paragraph::after,
+.marks.new-0 .revision ins.paragraph::after,
+.marks.new-1 .revision ins.paragraph::after,
+.marks.new-2 .revision ins.paragraph::after {
+	position: relative;
+	display: block;
+	height: 1em;
+	content: " ";
 }
 
 

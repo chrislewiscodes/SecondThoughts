@@ -23,6 +23,37 @@ function diff($old, $new){
     $matrix = array();
     $maxlen = 0;
     //print "===============================\n" . count($old) . " " . count($new) . "\nMemory: " . number_format(memory_get_usage()) . "\n";
+
+	$startsame = array();
+	$endsame = array();
+
+	$i = 0;
+	$l = min(count($old), count($new));
+	while ($i < $l && $old[$i] === $new[$i]) {
+		++$i;
+	}
+
+	if ($i) {
+		$startsame = array_splice($old, 0, $i);
+		array_splice($new, 0, $i);
+		$l -= $i;
+	}
+
+	$i = count($old)-1;
+	$j = count($new)-1;
+	$c = 0;
+	while ($i >= 0 and $j >= 0 and $old[$i] === $new[$j]) {
+		--$i;
+		--$j;
+		++$c;
+	}
+	
+	if ($c) {
+		$endsame = array_splice($old, -$c);
+		array_splice($new, -$c);
+		$l -= $c;
+	}	
+
     foreach($old as $oindex => $ovalue){
         $nkeys = array_keys($new, $ovalue);
         foreach($nkeys as $nindex){
@@ -38,11 +69,19 @@ function diff($old, $new){
     
     unset($matrix); //this is a huge memory hog that we can forget before recursing
     
-    if($maxlen == 0) return array(array('d'=>$old, 'i'=>$new));
+    if($maxlen == 0) return array_merge(
+    	$startsame,
+    	array(array('d'=>$old, 'i'=>$new)),
+    	$endsame
+    );
+
     return array_merge(
+	    $startsame,
         diff(array_slice($old, 0, $omax), array_slice($new, 0, $nmax)),
         array_slice($new, $nmax, $maxlen),
-        diff(array_slice($old, $omax + $maxlen), array_slice($new, $nmax + $maxlen)));
+        diff(array_slice($old, $omax + $maxlen), array_slice($new, $nmax + $maxlen)),
+        $endsame
+    );
 }
 
 function htmlDiff($old, $new){
