@@ -201,7 +201,7 @@ function plainTextDiff($t1, $t2, $htmlize=false) {
 	
 	//find links and replace them with hashes
 	//world's most confusing regexp
-	preg_match_all('/\[[^\]]+\]\([^\)]+\)/', $t1 . $t2, $matches, PREG_SET_ORDER);
+	preg_match_all('/\!?\[[^\]]+\]\([^\)]+\)/', $t1 . $t2, $matches, PREG_SET_ORDER);
 	foreach ($matches as $m) {
 		$links[$m[0]] = md5($m[0]);
 	}
@@ -217,7 +217,7 @@ function plainTextDiff($t1, $t2, $htmlize=false) {
 	$words1 = preg_split('/\s+/', $t1);
 	$words2 = preg_split('/\s+/', $t2);
 	
-	$diffwords = \PaulButler\diff($words1, $words2);
+	$diffwords = \PaulButler\diff($words1, $words2, false);
 
 	foreach ($diffwords as $worddiff) {
 		if (is_array($worddiff)) {
@@ -226,7 +226,7 @@ function plainTextDiff($t1, $t2, $htmlize=false) {
 
 			//print "'$deleted' => '$added'\n";
 			
-			$subdiffs = \PaulButler\diff(strToArray($deleted), strToArray($added));
+			$subdiffs = \PaulButler\diff(strToArray($deleted), strToArray($added), true);
 
 			$subresult = array();
 			$anyspecial = strpos($deleted, PARA) !== false || strpos($added, PARA) !== false;

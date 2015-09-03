@@ -19,7 +19,11 @@ namespace PaulButler;
     which can easily be styled with CSS.  
 */
 
-function diff($old, $new){
+function optimize(&$diffs) {
+	
+}
+
+function diff($old, $new, $optimize=false){
     $matrix = array();
     $maxlen = 0;
     //print "===============================\n" . count($old) . " " . count($new) . "\nMemory: " . number_format(memory_get_usage()) . "\n";
@@ -75,13 +79,69 @@ function diff($old, $new){
     	$endsame
     );
 
-    return array_merge(
+    $result = array_merge(
 	    $startsame,
-        diff(array_slice($old, 0, $omax), array_slice($new, 0, $nmax)),
+        diff(array_slice($old, 0, $omax), array_slice($new, 0, $nmax), false),
         array_slice($new, $nmax, $maxlen),
-        diff(array_slice($old, $omax + $maxlen), array_slice($new, $nmax + $maxlen)),
+        diff(array_slice($old, $omax + $maxlen), array_slice($new, $nmax + $maxlen), false),
         $endsame
     );
+
+	if ($optimize) {
+		optimize($result);
+	}
+
+	if ($optimize) {
+		//add a dummy same on the end
+		do {
+			$changed = false;
+			$insame = false;
+			$chunk = -1;
+			$sames = array($chunk => array('rightChanges' => 0, 'length' => 0, 'start' => 0));
+			foreach ($result as $i => $diff) {
+				if (is_array($diff)) {
+					if ($insame) {
+						$insame = false;
+					}
+					$sames[$chunk]['rightChanges'] += count($diff['d']) + count($diff['i']);
+				} else {
+					if (!$insame) {
+						$insame = true;
+						$sames[++$chunk] = array(
+							'rightChanges' => 0,
+							'start' => $i,
+							'length' => 0,
+						);
+					}
+					$sames[$chunk]['length'] += 1;
+				}
+			}
+
+			for ($i=$chunk; $i >= 0; $i--) {
+				$same = $sames[$i];
+				if ($same['length'] === 0) {
+					continue;
+				}
+				if ($sames[$i-1]['rightChanges'] + $same['rightChanges'] > $same['length']) {
+					//small match in the middle of large changes; break into insert/delete
+					$slice = array_slice($result, $same['start'], $same['length']);
+					array_splice($result, $same['start'], $same['length'], array(array('d' => $slice, 'i' => $slice)));
+					$changed = true;
+				}
+			}
+
+			if ($changed) {
+				for ($i=count($result)-2; $i >= 0; $i--) {
+					if (is_array($result[$i]) and is_array($result[$i+1])) {
+						$result[$i] = array_merge_recursive($result[$i], $result[$i+1]);
+						array_splice($result, $i+1, 1);
+					}
+				}
+			}
+		} while ($changed);
+	}
+
+	return $result;
 }
 
 function htmlDiff($old, $new){
