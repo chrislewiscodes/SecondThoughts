@@ -123,6 +123,11 @@ function diff($old, $new, $optimize=false, $dontoptimize=null){
 						continue;
 					}
 					
+					//also dont' optimize links
+					if (preg_match('/LINK:|:LINK/', implode('', $slice))) {
+						continue;
+					}
+					
 					array_splice($result, $same['start'], $same['length'], array(array('d' => $slice, 'i' => $slice)));
 					$changed = true;
 				}
