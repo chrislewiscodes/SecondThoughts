@@ -19,11 +19,7 @@ namespace PaulButler;
     which can easily be styled with CSS.  
 */
 
-function optimize(&$diffs) {
-	
-}
-
-function diff($old, $new, $optimize=false){
+function diff($old, $new, $optimize=false, $dontoptimize=null){
     $matrix = array();
     $maxlen = 0;
     //print "===============================\n" . count($old) . " " . count($new) . "\nMemory: " . number_format(memory_get_usage()) . "\n";
@@ -88,29 +84,25 @@ function diff($old, $new, $optimize=false){
     );
 
 	if ($optimize) {
-		optimize($result);
-	}
-
-	if ($optimize) {
 		//add a dummy same on the end
 		do {
 			$changed = false;
 			$insame = false;
 			$chunk = -1;
-			$sames = array($chunk => array('rightChanges' => 0, 'length' => 0, 'start' => 0));
+			$sames = array($chunk => array('length' => 0, 'start' => 0, 'rightChanges' => 0, ));
 			foreach ($result as $i => $diff) {
 				if (is_array($diff)) {
 					if ($insame) {
 						$insame = false;
 					}
-					$sames[$chunk]['rightChanges'] += count($diff['d']) + count($diff['i']);
+					$sames[$chunk]['rightChanges'] += (count($diff['d']) + count($diff['i']))/2;
 				} else {
 					if (!$insame) {
 						$insame = true;
 						$sames[++$chunk] = array(
-							'rightChanges' => 0,
 							'start' => $i,
 							'length' => 0,
+							'rightChanges' => 0,
 						);
 					}
 					$sames[$chunk]['length'] += 1;
@@ -125,10 +117,21 @@ function diff($old, $new, $optimize=false){
 				if ($sames[$i-1]['rightChanges'] + $same['rightChanges'] > $same['length']) {
 					//small match in the middle of large changes; break into insert/delete
 					$slice = array_slice($result, $same['start'], $same['length']);
+					
+					//but don't optimize if it contains special chars
+					if (!is_null($dontoptimize) and in_array($dontoptimize, $slice)) {
+						continue;
+					}
+					
 					array_splice($result, $same['start'], $same['length'], array(array('d' => $slice, 'i' => $slice)));
 					$changed = true;
 				}
 			}
+
+			#var_dump(implode('', $old));
+			#var_dump(implode('', $new));
+			#var_dump($sames);
+			#var_dump($result);
 
 			if ($changed) {
 				for ($i=count($result)-2; $i >= 0; $i--) {

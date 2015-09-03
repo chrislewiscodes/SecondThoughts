@@ -226,7 +226,7 @@ function plainTextDiff($t1, $t2, $htmlize=false) {
 
 			//print "'$deleted' => '$added'\n";
 			
-			$subdiffs = \PaulButler\diff(strToArray($deleted), strToArray($added), true);
+			$subdiffs = \PaulButler\diff(strToArray($deleted), strToArray($added), true, PARA);
 
 			$subresult = array();
 			$anyspecial = strpos($deleted, PARA) !== false || strpos($added, PARA) !== false;
