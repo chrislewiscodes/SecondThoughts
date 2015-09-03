@@ -181,8 +181,8 @@ function cleanupText($text) {
 
 function handleParagraphs(&$deleted, &$added) {
 	//paragraphs get the actual line breaks removed. We'll handle the spacing in CSS.
-	$deleted = str_replace(PARA . PARA, "</del><del class='paragraph'></del><del>", $deleted);
-	$added = str_replace(PARA . PARA, "</ins><ins class='paragraph'></ins><ins>", $added);
+	$deleted = str_replace(PARA . PARA, "</del> <del>", $deleted);
+	$added = str_replace(PARA . PARA, "</ins>\n\n<ins>", $added);
 
 	// single line breaks are preserved
 	$deleted = str_replace(PARA, "</del>\n<del>", $deleted);
@@ -292,7 +292,6 @@ function plainTextDiff($t1, $t2, $htmlize=false) {
 	$result = str_replace(PARA, "\n", $result);
 
 	//try not to fuck up markdown syntax
-	$result = preg_replace("~<(?:ins|del) class='paragraph'></(?:ins|del)>(<(?:ins|del)>$MARKDOWN)~", "\n\n\$1", $result);
 	$result = preg_replace('/^<(del|ins)>(' . $MARKDOWN . '+)/m', '$2<$1>', $result);
 	$result = preg_replace('/^(' . $MARKDOWN . '+)<(del|ins)>\s*/m', '$1 <$2>', $result);
 	
