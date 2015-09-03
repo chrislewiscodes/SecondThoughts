@@ -138,10 +138,12 @@ function startRotation() {
 }
 
 function endRotation() {
-	going = false;
-	clearTimeout(timeout);
-	tick = -1;
-	doMarks();
+	setTimeout(function() { 
+		going = false;
+		clearTimeout(timeout); 
+		tick = -1;
+		doMarks();
+	}, interval*3);
 }
 
 window.startRotation = startRotation;
