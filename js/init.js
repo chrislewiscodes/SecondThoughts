@@ -143,7 +143,7 @@ function endRotation() {
 		clearTimeout(timeout); 
 		tick = -1;
 		doMarks();
-	}, interval*3);
+	}, interval*1.5);
 }
 
 window.startRotation = startRotation;
@@ -171,7 +171,6 @@ $(document).on('keyup', function(evt) {
 
 //scroll magic
 var scrollTimeout;
-var lastScroll = $window.scrollTop();
 $window.on('scroll', function(evt) {
 	if ($body.hasClass('navigated') || $('#overlay.overlay-on').length) {
 		return;
