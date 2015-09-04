@@ -9,7 +9,10 @@ $window.on('resize', function() {
 
 function positionMessage() {
 	var messageHeight = $('#message').height();
-	$('#message').css('top', windowHeight/2-messageHeight/1.5+'px');
+	$('#message').css({
+		'top': windowHeight/2-messageHeight/1.5+'px',
+		'visibility': 'visible'
+	});
 }
 
 $(function() {
@@ -137,13 +140,15 @@ function startRotation() {
 	doMarks();
 }
 
-function endRotation() {
-	setTimeout(function() { 
-		going = false;
-		clearTimeout(timeout); 
-		tick = -1;
-		doMarks();
-	}, interval*3);
+function endRotation() { 
+	going = false;
+	clearTimeout(timeout); 
+	tick = -1;
+	doMarks();
+}
+
+function endRotationDelayed() {
+	setTimeout(endRotation, interval*1.5);
 }
 
 window.startRotation = startRotation;
@@ -153,6 +158,9 @@ debug && $body.append("<div id='bodyclass' style='position:absolute;top:0;left:0
 
 // go back and forth responding to arrow keys
 $(document).on('keyup', function(evt) {
+	if (going) {
+		return;
+	}
 	switch (evt.which) {
 		case 37: //left
 			going = false;
@@ -171,7 +179,6 @@ $(document).on('keyup', function(evt) {
 
 //scroll magic
 var scrollTimeout;
-var lastScroll = $window.scrollTop();
 $window.on('scroll', function(evt) {
 	if ($body.hasClass('navigated') || $('#overlay.overlay-on').length) {
 		return;
@@ -179,7 +186,7 @@ $window.on('scroll', function(evt) {
 	var nowScroll = $window.scrollTop();
 	going || startRotation();
 	scrollTimeout && clearTimeout(scrollTimeout);
-	scrollTimeout = setTimeout(endRotation, interval);
+	scrollTimeout = setTimeout(endRotationDelayed, interval);
 });
 
 

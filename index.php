@@ -116,6 +116,20 @@ function section($section) {
 	<script src="js/init.js"></script>
 </head>
 <body class='rev-0'>
+
+<div id="overlay"<?php if (true or !isset($_COOKIE['visited']) or isset($_GET['shownote'])): ?> class="overlay-on" <?php endif ?>>
+	<div id="message" style='visibility:hidden'>
+		<div id="close">
+			<span></span>
+		</div>
+		<?php if ($language === 'EN'): ?>
+			<p>This site is constantly changing; its content is edited and published in real time. Constantly review it to stay informed of our updates.</p>
+		<?php else: ?>
+			<p>Este sitio está en constante cambio; su contenido es editado y publicado en tiempo real. Revisarlo constantemente para mantenerse informado de nuestras actualizaciones.</p>
+		<?php endif; ?>
+	</div>
+</div>
+
 <div id="extra-parameters">
 	<div id="nav-toggle"><span></span></div>
 	<div id="nav">
@@ -199,22 +213,12 @@ function section($section) {
 	</div>
 </div>
 
-<div id="overlay"<?php if (true or !isset($_COOKIE['visited']) or isset($_GET['shownote'])): ?> class="overlay-on" <?php endif ?>>
-	<div id="message">
-		<div id="close">
-			<span></span>
-		</div>
-		<p><?php if ($language === 'EN'): ?>
-			This site is constantly changing; its content is edited and published in real time. Constantly refresh it to stay informed of our updates.
-		<?php else: ?>
-			Este sitio está en constante cambio; su contenido es editado y publicado en tiempo real. Asegúrate de revisarlo constantemente para mantenerte informado de futuras actualizaciones.
-		<?php endif; ?><br /><br />
-			<?php lastUpdated(); ?>
-		</p>
-	</div>
-</div>
-
-<script> positionMessage(); </script>
+<script> 
+	var lastupdated = $('#counter').clone();
+	lastupdated.attr('id','');
+	$('#message').append(lastupdated);
+	positionMessage(); 
+</script>
 
 <?php 
 	print "<!-- "; 
