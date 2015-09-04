@@ -458,7 +458,12 @@ h1#background-type.show {
 }
 
 img {
-	width: 100%;
+	width: 80%;
+	height: auto;
+	margin: auto;
+	display: block;
+	-webkit-filter: grayscale(1);
+  	filter: grayscale(1);
 }
 
 
@@ -557,32 +562,19 @@ span.diff-html-changed {
 	width: 0;
 	height: 0;
 	border-style: solid;
-	border-color: transparent transparent transparent #007bff;
+	position: absolute;
+	top: 0%;
+	left: 10%;
 }
 
 .marks.old-2 .revision .image .bottom-right,
 .marks.new-2 .revision .image .bottom-right {
-	border-color: transparent transparent transparent #007bff;
+	border-color: transparent transparent #ddd transparent;
 }
 
 .marks.old-2 .revision .image .top-left, 
 .marks.new-2 .revision .image .top-left {
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-color: transparent transparent transparent #007bff;
-}
-
-
-.marks.old-2 .revision .image .top-left, 
-.marks.new-2 .revision .image .top-left, 
-.marks.old-2 .revision .image .bottom-right,
-.marks.new-2 .revision .image .bottom-right {
-	content: ' ';
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-color: transparent transparent transparent #007bff;
+	border-color: #000 transparent transparent transparent;
 }
 
 .marks.old-2 .revision .image img, 
@@ -600,10 +592,15 @@ span.diff-html-changed {
 
 .marks:not(.old-0) .revision h1 del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
 	background: url(/img/black-dot.gif) 0px 0.5em repeat-x;
+	background: none;
 }
 
 .marks:not(.new-0) .revision ins:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
-	background: url(/img/black-dot.gif) 0px 1em repeat-x;
+	background: url(/img/black-dot.gif) 0px 15px repeat-x;
+}
+
+.marks:not(.new-0) .revision h1 ins:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
+	background: url(/img/black-dot.gif) 0px 30px repeat-x;
 }
 
 .marks.new-1 .revision ins.punctuation::after,
@@ -628,6 +625,20 @@ span.diff-html-changed {
     left: 0px;
     top: 0px;
 	width: 10px;
+    height: 25px;
+    background: url(/img/black-3-line.gif) left bottom repeat-x;
+    content: " ";
+}
+
+.marks.old-1 .revision h1 del.capitalize::after,
+.marks.old-2 .revision h1 del.capitalize::after,
+.marks.new-1 .revision h1 ins.capitalize::after,
+.marks.new-2 .revision h1 ins.capitalize::after {
+	display: block;
+    position: absolute;
+    left: 2px;
+    top: 12px;
+    width: 12px;
     height: 25px;
     background: url(/img/black-3-line.gif) left bottom repeat-x;
     content: " ";
@@ -688,6 +699,20 @@ span.diff-html-changed {
     content: " ";
 }
 
+.marks.old-1 .revision h1 del.lowercase::after,
+.marks.old-2 .revision h1 del.lowercase::after,
+.marks.new-1 .revision h1 ins.lowercase::after,
+.marks.new-2 .revision h1 ins.lowercase::after {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 4px;
+    height: 60px;
+    background: url(/img/black-lowercase.gif) left top no-repeat;
+    background-size: contain;
+    width: 16px;
+    content: " ";
+}
 
 .marks.old-1 .revision del.paragraph,
 .marks.old-2 .revision del.paragraph,

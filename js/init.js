@@ -225,8 +225,11 @@ $('#overlay.overlay-on').each(function() {
 
 $('.revision .image').each(function(){
     $(this).append( '<div class="top-left"></div><div class="bottom-right"></div>');
-    var topLeft = $(this).find('.top-left');
-    $(topLeft).css({"border-left":"100px","border-top":"100px;"});
+    var imageWidth = $(this).find('img').width();
+    var imageHeight = $(this).find('img').height();
+    $(this).find('.top-left').css({'border-width': +imageHeight+'px '+imageWidth+'px 0px 0px'});
+    $(this).find('.bottom-right').css({'border-width': '0px 0px '+imageHeight+'px '+imageWidth+'px'});
+
 });
 
 
