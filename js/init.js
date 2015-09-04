@@ -9,7 +9,10 @@ $window.on('resize', function() {
 
 function positionMessage() {
 	var messageHeight = $('#message').height();
-	$('#message').css('top', windowHeight/2-messageHeight/1.5+'px');
+	$('#message').css({
+		'top': windowHeight/2-messageHeight/1.5+'px',
+		'visibility': 'visible'
+	});
 }
 
 $(function() {
@@ -155,6 +158,9 @@ debug && $body.append("<div id='bodyclass' style='position:absolute;top:0;left:0
 
 // go back and forth responding to arrow keys
 $(document).on('keyup', function(evt) {
+	if (going) {
+		return;
+	}
 	switch (evt.which) {
 		case 37: //left
 			going = false;
