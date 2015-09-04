@@ -137,13 +137,15 @@ function startRotation() {
 	doMarks();
 }
 
-function endRotation() {
-	setTimeout(function() { 
-		going = false;
-		clearTimeout(timeout); 
-		tick = -1;
-		doMarks();
-	}, interval*1.5);
+function endRotation() { 
+	going = false;
+	clearTimeout(timeout); 
+	tick = -1;
+	doMarks();
+}
+
+function endRotationDelayed() {
+	setTimeout(endRotation, interval*1.5);
 }
 
 window.startRotation = startRotation;
@@ -178,7 +180,7 @@ $window.on('scroll', function(evt) {
 	var nowScroll = $window.scrollTop();
 	going || startRotation();
 	scrollTimeout && clearTimeout(scrollTimeout);
-	scrollTimeout = setTimeout(endRotation, interval);
+	scrollTimeout = setTimeout(endRotationDelayed, interval);
 });
 
 
