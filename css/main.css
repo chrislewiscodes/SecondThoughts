@@ -545,9 +545,44 @@ span.diff-html-changed {
 
 .marks.old-2 .revision .image, 
 .marks.new-2 .revision .image {
-	background: url(/img/black-x.gif) no-repeat center center;
+/*	background: url(/img/black-x.gif) no-repeat center center;
 	background-size: 100% 100%;
-	width: 100%;
+*/	width: 100%;
+}
+
+.marks.old-2 .revision .image .top-left, 
+.marks.new-2 .revision .image .top-left, 
+.marks.old-2 .revision .image .bottom-right,
+.marks.new-2 .revision .image .bottom-right {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-color: transparent transparent transparent #007bff;
+}
+
+.marks.old-2 .revision .image .bottom-right,
+.marks.new-2 .revision .image .bottom-right {
+	border-color: transparent transparent transparent #007bff;
+}
+
+.marks.old-2 .revision .image .top-left, 
+.marks.new-2 .revision .image .top-left {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-color: transparent transparent transparent #007bff;
+}
+
+
+.marks.old-2 .revision .image .top-left, 
+.marks.new-2 .revision .image .top-left, 
+.marks.old-2 .revision .image .bottom-right,
+.marks.new-2 .revision .image .bottom-right {
+	content: ' ';
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-color: transparent transparent transparent #007bff;
 }
 
 .marks.old-2 .revision .image img, 

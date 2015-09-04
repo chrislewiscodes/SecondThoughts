@@ -214,6 +214,14 @@ $('#overlay.overlay-on').each(function() {
 });
 
 
+// get triangle heights 
+
+$('.revision .image').each(function(){
+    $(this).append( '<div class="top-left"></div><div class="bottom-right"></div>');
+    var topLeft = $(this).find('.top-left');
+    $(topLeft).css({"border-left":"100px","border-top":"100px;"});
+});
+
 
 
 });
