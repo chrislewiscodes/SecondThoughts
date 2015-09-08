@@ -4,30 +4,13 @@ namespace SecondThoughts;
 /*
  * Copyright 2015 Chris Lewis <chris@chrislewis.codes>
  *
- * Takes the output of HTMLDiff and adds some information about certain
+ * Takes the output of a general diff and adds some information about certain
  * proofreading-specific classes of differences: capitalization changes,
  * punctuation changes, diacritic changes, word transpositions.
- *
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- * or see http://www.gnu.org/
  *
  */
 
 require_once('diff.php');
-require_once('htmldiff/html_diff.php');
 require_once("parsedown.php");
 
 define('PARA', '⁋');
@@ -128,39 +111,6 @@ function getSpecial($deleted, $added) {
 	$output .= $doOutput($subto, $subfrom, $prevspecial);
 	
 	return $output;	
-}
-
-function secondDiff($from, $to) {
-	$diff = html_diff($from, $to, true);
-
-	preg_match_all(':(<del>(.*?)</del>)(<ins>(.*?)</ins>):u', $diff, $matches, PREG_SET_ORDER);
-	
-	foreach ($matches as $m) {
-		list($whole, $olddel, $deleted, $oldins, $added) = $m;
-
-		// sometimes this regexp picks up multiple <del> clauses
-		// so zap any extra ones
-		
-		$whole = preg_replace(':^.*</del>.*<del>:', '<del>', $whole);
-		$olddel = preg_replace(':^.*</del>.*<del>:', '<del>', $olddel);
-		$deleted = preg_replace(':^.*</del>.*<del>:', '', $deleted);
-
-		$replacement = getSpecial($deleted, $added);
-		
-		if ($replacement !== $whole) {
-			$diff = str_replace($whole, $replacement, $diff);
-			if (PHP_SAPI === 'cli') {
-				print ($whole) . "|  --->  " . ($replacement) . "|\n";
-			}
-		}
-	}
-
-	//$diff = preg_replace(': +</(ins|del)>:u', '</$1> ', $diff);
-
-	//find added/deleted punctuation
-	$diff = preg_replace(':<(ins|del)>(\p{P})</(ins|del)>:u', '<$1 class="punctuation">$2</$3>', $diff);
-		
-	return $diff;
 }
 
 function strToArray($str) {
@@ -318,7 +268,7 @@ function plainTextDiff($t1, $t2, $htmlize=false) {
 	return $result;
 }
 
-if (PHP_SAPI === 'cli') {
+if (PHP_SAPI === 'cli' and basename($argv[0]) === basename(__FILE__)) {
 	$f1 = file_get_contents($argv[1]);
 	$f2 = file_get_contents($argv[2]);
 	#print secondDiff($f1, $f2) . "\n";
