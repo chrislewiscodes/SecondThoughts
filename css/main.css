@@ -9,7 +9,6 @@
 }
 
 body {
-	font-family: 'NeutralBP-Medium';
 	font-family: 'Times New Roman', 'Times', serif;
 	font-family: arial, helvetica, sans-serif;
 
@@ -316,7 +315,7 @@ ul { margin-bottom: 36px; }
     );	
 }
 
-.navigated #nav ul li a::hover {
+.navigated #nav ul li a:hover {
 	color: black;
 	background-image: linear-gradient(to top,
     	rgba(0,0,0,0) 5%,
@@ -548,68 +547,18 @@ span.diff-html-changed {
 	color: rgba(0,0,0,0);
 }
 
-.marks.old-2 .revision .image, 
-.marks.new-2 .revision .image {
-/*	background: url(/img/black-x.gif) no-repeat center center;
-	background-size: 100% 100%;
-*/	width: 80%;
-	height: 100%;
-	margin: auto;
-	border: 5px solid #000;
-}
-
-.marks.old-2 .revision .image .top-left, 
-.marks.new-2 .revision .image .top-left, 
-.marks.old-2 .revision .image .bottom-right,
-.marks.new-2 .revision .image .bottom-right,
-.marks.old-2 .revision .image .inner-left, 
-.marks.new-2 .revision .image .inner-left, 
-.marks.old-2 .revision .image .inner-right,
-.marks.new-2 .revision .image .inner-right {
-	width: 0;
-	height: 0;
-	border-style: solid;
-	position: absolute;
-}
-
-
-
-/* triangle pointing left */
-
-.marks.old-2 .revision .image .bottom-right,
-.marks.new-2 .revision .image .bottom-right {
-	border-color: transparent #000 transparent transparent;
-	top: 0%;
-	right: 10%;
-}
-
-.marks.old-2 .revision .image .inner-right,
-.marks.new-2 .revision .image .inner-right {
-	border-color: transparent #fff transparent transparent;
-	top: calc(10px + 1px);
-	right: calc(10% + 1px);
-}
-
-/* triangle pointing right */
-
-.marks.old-2 .revision .image .top-left, 
-.marks.new-2 .revision .image .top-left {
-	border-color: transparent transparent transparent #000;
-	top: 0%;
-	left: 10%;
-}
-
-.marks.old-2 .revision .image .inner-left, 
-.marks.new-2 .revision .image .inner-left {
-	border-color: transparent transparent transparent #fff;
-	top: calc(10px + 1px);
-	left: calc(10% + 1px);
-}
-
-.marks.old-2 .revision .image img, 
-.marks.new-2 .revision .image img {
+.marks img {
 	opacity: 0;
-	width: 100%;
+}
+
+.marks .colthree .image-holder {
+	background: url(/img/horizontal-frame.png) center center no-repeat;
+	background-size: 80% 98%;
+}
+
+.marks .colone .image-holder {
+	background: url(/img/vertical-frame.png) center center no-repeat;
+	background-size: 80% 100%;
 }
 
 /* marks */
@@ -646,7 +595,7 @@ span.diff-html-changed {
     content: " ";
 }
 
-.marks.new-1 .revision h1 ins.punctuation::after,
+/*.marks.new-1 .revision h1 ins.punctuation::after,
 .marks.new-2 .revision h1 ins.punctuation::after {
 	display: block;
 	position: absolute;
@@ -658,7 +607,7 @@ span.diff-html-changed {
 	background-size: cover;
     content: " ";
 }
-
+*/
 
 .marks.old-1 .revision del.capitalize::after,
 .marks.old-2 .revision del.capitalize::after,

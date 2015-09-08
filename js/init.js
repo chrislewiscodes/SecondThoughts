@@ -132,28 +132,6 @@ function doMarks() {
 		++tick;
 		timeout = setTimeout(doMarks, interval);
 	}
-
-	// get triangle heights 
-
-	$('.revision .image').each(function(){
-	    $(this).append( '<div class="top-left"></div><div class="bottom-right"></div><div class="inner-left"></div><div class="inner-right"></div>');
-	    var imageWidth = $(this).find('img').width()-10;
-	    var outlineWidth = $(this).find('img').width()+8;
-	    var imageHeight = $(this).find('img').height()-12;
-	    var outlineHeight = $(this).find('img').height()+10;
-	    //$(this).css({'height': imageHeight+'px'});
-
-	    console.log(imageHeight);
-
-	    //outlines
-	    $(this).find('.top-left').css({'border-width': +outlineHeight/2+'px 0px '+outlineHeight/2+'px '+outlineWidth/2+'px'});
-	    $(this).find('.bottom-right').css({'border-width': +outlineHeight/2+'px '+outlineWidth/2+'px '+outlineHeight/2+'px 0px'});
-
-	    //fill
-	    $(this).find('.inner-left').css({'border-width': +imageHeight/2+'px 0px '+imageHeight/2+'px '+imageWidth/2+'px'});
-	    $(this).find('.inner-right').css({'border-width': +imageHeight/2+'px '+imageWidth/2+'px '+imageHeight/2+'px 0px'});
-	});
-
 }
 
 function startRotation() {
@@ -212,6 +190,11 @@ $window.on('scroll', function(evt) {
 });
 
 
+// give image containers class
+
+$('img').each(function() {
+	$(this).parent().addClass('image-holder');
+})
 
 //only do this stuff if the overlay is showing
 $('#overlay.overlay-on').each(function() {
