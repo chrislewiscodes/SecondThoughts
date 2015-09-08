@@ -3,12 +3,6 @@ namespace SecondThoughts;
 
 require_once("dev/2tdiff.php");
 
-if (isset($_GET['refresh'])) {
-	if (isset($_COOKIE['visited'])) {
-		unset($_COOKIE['visited']);
-	}
-}
-
 $diffs = array();
 $plaintext = array();
 $revisions = array();
@@ -16,7 +10,11 @@ $revisiondates = array();
 
 $languages = array('ES' => 'spanish', 'EN' => 'english');
 
-$language = isset($_GET['lang']) && isset($languages[$_GET['lang']]) ? $_GET['lang'] : 'ES';
+if (PHP_SAPI === 'cli') {
+	$language = isset($argv[1]) && isset($languages[$argv[1]]) ? $argv[1] : 'ES';
+} else {
+	$language = isset($_GET['lang']) && isset($languages[$_GET['lang']]) ? $_GET['lang'] : 'ES';
+}
 
 $translations = array(
 	'updated' => 'actualizado',
@@ -29,8 +27,6 @@ $translations = array(
 	'more info' => 'mas info',
 	'contact' => 'contacto',
 );
-
-setcookie('visited', 'yes', null, '/');
 
 function urlWithArgs($newargs) {
 	parse_str($_SERVER['QUERY_STRING'], $oldargs);
@@ -115,6 +111,8 @@ function section($section) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="js/init.js"></script>
 
+	<link rel="canonical" href="http://secondthoughts.mx/">
+
 	<!-- adding favicons -->
 	<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
@@ -137,7 +135,7 @@ function section($section) {
 </head>
 <body class='rev-0'>
 
-<div id="overlay"<?php if (true or !isset($_COOKIE['visited']) or isset($_GET['shownote'])): ?> class="overlay-on" <?php endif ?>>
+<div id="overlay" class="overlay-on">
 	<div id="message" style='visibility:hidden'>
 		<div id="close">
 			<span></span>
@@ -180,7 +178,7 @@ function section($section) {
 	<div id="language-toggle"><?php 
 		foreach ($languages as $short=>$long) { 
 			if ($short !== $language) {
-				print "<a href='" . urlWithArgs(array('lang' => $short)) . "'>$short</a>";
+				print "<a href='{$long}.html'>$short</a>";
 				break;
 			}
 		}
