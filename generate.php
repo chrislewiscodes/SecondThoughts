@@ -230,6 +230,8 @@ function section($section) {
 				<h2><?php print translate('contact', 'ucfirst'); ?></h2>
 				<?php section('contacto'); ?>
 			</div>
+			<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/secondthoughts" data-widget-id="644961222266261504" data-chrome="transparent">#secondthoughts Tweets</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 		</div>		
 	</div>
 
