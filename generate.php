@@ -16,6 +16,7 @@ if (PHP_SAPI === 'cli') {
 	$language = isset($_GET['lang']) && isset($languages[$_GET['lang']]) ? $_GET['lang'] : 'ES';
 }
 
+# all lowercase here; you can specify case in calls to translate()
 $translations = array(
 	'updated' => 'actualizado',
 	'update' => 'actualización',
@@ -33,6 +34,7 @@ function urlWithArgs($newargs) {
 	return '?' . http_build_query(array_merge($oldargs, $newargs));
 }
 
+# call translate with the English word, optionally specify case with 'ucfirst', 'ucwords', or 'upper'
 function translate($text, $case='original') {
 	global $language, $translations;
 	if (!isset($translations[$text])) {
@@ -178,7 +180,12 @@ function section($section) {
 	<div id="language-toggle"><?php 
 		foreach ($languages as $short=>$long) { 
 			if ($short !== $language) {
-				print "<a href='{$long}.html'>$short</a>";
+				if (PHP_SAPI === 'cli') {
+					// in cron job, use static link
+					print "<a href='{$long}.html'>$short</a>";
+				} else {
+					print "<a href='?lang=$short'>$short</a>";
+				}
 				break;
 			}
 		}
