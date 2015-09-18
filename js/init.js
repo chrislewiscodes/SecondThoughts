@@ -206,6 +206,7 @@ $('#overlay.overlay-on').each(function() {
 		$('#overlay').removeClass('overlay-on');
 		$('h1#background-type').addClass('show');
 		$(document).off('.close');	
+		$window.off('.close');
 		endRotation();
 	}
 	
@@ -223,6 +224,8 @@ $('#overlay.overlay-on').each(function() {
 			closeOverlay();
 		}
 	});
+	
+	$window.on('resize.close', positionMessage);
 });
 
 });
