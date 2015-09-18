@@ -137,6 +137,13 @@ function section($section) {
 </head>
 <body class='rev-0'>
 
+<script> 
+	//apply this before anything becomes visible
+	if (window.location.href.indexOf('fade') >= 0) {
+		document.getElementsByTagName('body')[0].style.opacity = 0;
+	}
+</script>
+
 <div id="overlay" class="overlay-on">
 	<div id="message" style='visibility:hidden'>
 		<div id="close">
@@ -182,9 +189,9 @@ function section($section) {
 			if ($short !== $language) {
 				if (PHP_SAPI === 'cli') {
 					// in cron job, use static link
-					print "<a href='{$long}.html'>$short</a>";
+					print "<a class='fade' href='{$long}.html'>$short</a>";
 				} else {
-					print "<a href='?lang=$short'>$short</a>";
+					print "<a class='fade' href='?lang=$short'>$short</a>";
 				}
 				break;
 			}

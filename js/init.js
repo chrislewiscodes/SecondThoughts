@@ -1,3 +1,24 @@
+function getUrlParameter(sParam)
+{
+	var result;
+	$.each(window.location.search.substr(1).split('&'), function(i, equal) {
+		var keyval = equal.split('=');
+		if (keyval[0] === sParam) {
+			result = keyval.length > 1 ? keyval[1] : true;
+			return false;
+		}
+	})
+	return result;
+}  
+
+
+var fadeDuration = 0.333;
+var doFade = getUrlParameter('fade');
+
+if (doFade) {
+	$('body').css('opacity', 0);
+}
+
 var $window = $(window);
 var windowWidth = $window.width();
 var windowHeight = $window.height();
@@ -86,19 +107,6 @@ $('a').each(function() {
 
 $('ins img, del img').wrap('<div class="image"></div>');
 
-
-function getUrlParameter(sParam)
-{
-	var result;
-	$.each(window.location.search.substr(1).split('&'), function(i, equal) {
-		var keyval = equal.split('=');
-		if (keyval[0] === sParam) {
-			result = keyval.length > 1 ? keyval[1] : true;
-			return false;
-		}
-	})
-	return result;
-}  
 
 var marks = getUrlParameter('marks');
 var debug = getUrlParameter('debug');
@@ -227,6 +235,23 @@ $('#overlay.overlay-on').each(function() {
 	
 	$window.on('resize.close', positionMessage);
 });
+
+// fade in/out on certain links
+$('a.fade').on('click', function(evt) {
+	var url = this.href + (this.href.indexOf('?') >= 0 ? '&' : '?') + 'fade';
+	//start the fade
+	$body.css('opacity', 1);
+	$body.animate({'opacity':0}, {'duration':fadeDuration*1000});
+	setTimeout(function() {		
+		window.location.href = url;
+	}, fadeDuration*1000);
+	return false;
+});
+
+if (doFade) {
+	$body.css('opacity', 0);
+	$body.animate({'opacity':1}, {'duration':fadeDuration*1000});
+}
 
 });
 
