@@ -237,8 +237,27 @@ function section($section) {
 				<h2><?php print translate('contact', 'ucfirst'); ?></h2>
 				<?php section('contacto'); ?>
 			</div>
-			<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/secondthoughts" data-widget-id="644961222266261504" data-chrome="transparent">#secondthoughts Tweets</a>
+
+			<!-- MAILCHIMP -->
+			<form action="//secondthoughts.us11.list-manage.com/subscribe/post?u=e34c5ba197f6d60dce12b81b4&amp;id=a7ccdb3077" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+				<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="Email address">
+				<div id="mce-responses">
+					<div class="response" id="mce-error-response" style="display:none"></div>
+					<div class="response" id="mce-success-response" style="display:none"></div>
+				</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+			    <div style="position: absolute; left: -5000px;"><input type="text" name="b_e34c5ba197f6d60dce12b81b4_a7ccdb3077" tabindex="-1" value=""></div>
+			    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+			    </div>
+			</form>
+			<!-- /MAILCHIMP -->			
+			
+			<!--
+			<div>
+			<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/2ndthoughtsmx/lists/second-thoughts" data-widget-id="645010383527284736" data-tweet-limit="3" data-chrome="nofooter noborder noscrollbar transparent">Tweets from https://twitter.com/2ndthoughtsmx/lists/second-thoughts</a>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			</div>
+			-->
+		
 		</div>		
 	</div>
 

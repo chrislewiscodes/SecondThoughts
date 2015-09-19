@@ -450,6 +450,26 @@ h1#background-type.show {
 	opacity: 1;	
 }
 
+
+
+/* MailChimp signup form */
+
+#mc-embedded-subscribe-form input {
+	width: 100%;
+	font: inherit;
+}
+
+#mc-embedded-subscribe.button {
+	display: inline;
+	text-decoration: underline;
+	border: none;
+	padding: 0;
+	margin: 0;
+	box-shadow: none;
+	background: none;
+	text-align: left;
+}
+
 /* cycling images */
 
 .image {
