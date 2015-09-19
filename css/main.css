@@ -454,9 +454,12 @@ h1#background-type.show {
 
 /* MailChimp signup form */
 
-#mc-embedded-subscribe-form input {
+#mc-embedded-subscribe-form #mce-EMAIL {
 	width: 100%;
+	max-width: 14em;
 	font: inherit;
+	box-sizing: border-box;
+	padding-left: 0.2em;
 }
 
 #mc-embedded-subscribe.button {
@@ -468,6 +471,11 @@ h1#background-type.show {
 	box-shadow: none;
 	background: none;
 	text-align: left;
+	font: inherit;
+}
+
+#mc-embedded-subscribe.button::before {
+	content: " ";
 }
 
 /* cycling images */
