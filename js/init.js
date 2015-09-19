@@ -12,7 +12,7 @@ function getUrlParameter(sParam)
 }  
 
 
-var fadeDuration = 0.333;
+var fadeDuration = 0.25;
 var doFade = getUrlParameter('fade');
 
 if (doFade) {
