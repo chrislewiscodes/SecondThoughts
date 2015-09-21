@@ -45,6 +45,8 @@ h2 {
 
 h3, h4 { text-align: left; }
 
+.coltwo h2:not(:first-child) { font-weight: normal; text-align: center;}
+
 h4 {margin-bottom: 0px;}
 
 p { margin-bottom: 36px; }
@@ -79,17 +81,6 @@ ul { margin-bottom: 36px; }
 
 /* logos */
 
-/*#a47 {
-	margin: 0px auto;
-	width: 55px;
-	height: 58.5px;
-	background: url(/img/a47.png) no-repeat center center;
-	text-indent: -1000000px;
-	display: block;
-	background-size: contain;
-
-    transform: translate(560px, -80px);
-}*/
 
 #alumnos {
 	margin: 0px auto;
@@ -101,10 +92,10 @@ ul { margin-bottom: 36px; }
 	display: block;
 	background-size: contain;
 
-	position: relative;
-	top: -63px;
-	left: 170px;
-	z-index: 1001; /* to move it over #logo */
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	z-index: 1001;
 }
 
 
@@ -174,8 +165,8 @@ ul { margin-bottom: 36px; }
 
 #language-toggle {
 	position: fixed;
-	bottom: 15px;
-	left: 15px;
+	bottom: 20px;
+	left: 20px;
 	z-index: 10001;
 	text-decoration: underline;
 }
@@ -341,8 +332,8 @@ ul { margin-bottom: 36px; }
 
 #counter {
 	position: fixed;
-	bottom: 5px;
-	right: 5px;
+	bottom: 20px;
+	right: 20px;
 	font-size: 16.5px;
 
 	-webkit-transform: rotate(90deg) translateX(1em);
@@ -398,7 +389,7 @@ h1#background-type {
 }
 
 h1#background-type.show {
-	opacity: .3;
+	opacity: .2;
 }
 
 
@@ -430,7 +421,7 @@ h1#background-type.show {
 .colfour a{
 }
 
-.colfour a::after{
+.coltwo a::after, .colfour a::after{
 	content: " \2192";
 	width: 0px;
 	display: inline-block;
@@ -443,7 +434,7 @@ h1#background-type.show {
 }
 
 
-.colfour a:hover:after {
+.coltwo a:hover:after, .colfour a:hover:after {
 	content: " \2192";
 	width: 23px;
 	display: inline-block;
@@ -460,22 +451,43 @@ h1#background-type.show {
 	font: inherit;
 	box-sizing: border-box;
 	padding-left: 0.2em;
+	background-color: transparent;
+	border: 1px solid #000;
+	color: black;
+	font-weight: normal;
+
+}
+
+#mce-EMAIL {
+	padding: 5px;
 }
 
 #mc-embedded-subscribe.button {
-	display: inline;
+	display: inline-block;
 	text-decoration: underline;
 	border: none;
 	padding: 0;
-	margin: 0;
+	margin: 10px 0px;
 	box-shadow: none;
 	background: none;
 	text-align: left;
 	font: inherit;
+	font-weight: normal;
+	color: black;
+
+	cursor: pointer;
 }
 
 #mc-embedded-subscribe.button::before {
 	content: " ";
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    background: transparent;
 }
 
 /* cycling images */
@@ -491,6 +503,10 @@ img {
 	display: block;
 	-webkit-filter: grayscale(1);
   	filter: grayscale(1);
+
+	-ms-transform: translateX(-7px); /* IE 9 */
+	-webkit-transform: translateX(-7px); /* Safari */
+	transform: translateX(-7px);
 }
 
 
@@ -582,12 +598,18 @@ span.diff-html-changed {
 .marks .colthree .image-holder {
 	background: url(/img/horizontal-frame.png) center center no-repeat;
 	background-size: 80% 98%;
-}
+	-ms-transform: translateX(-7.5px); /* IE 9 */
+	-webkit-transform: translateX(-7.5px); /* Safari */
+	transform: translateX(-7.5px);
+}	
 
 .marks .colone .image-holder {
 	background: url(/img/vertical-frame.png) center center no-repeat;
 	background-size: 80% 100%;
-}
+	-ms-transform: translateX(-7.5px); /* IE 9 */
+	-webkit-transform: translateX(-7.5px); /* Safari */
+	transform: translateX(-7.5px);
+}	
 
 /* marks */
 
@@ -858,19 +880,19 @@ and (max-width : 1200px)  {
 
 	/* logos */
 
-	#a47 {
-		width: 55px;
-		height: 58.5px;
-	    transform: translate(500px, -77px);
-	}
-
 	#alumnos {
+		top: 20px;
+		left: 18px;
 		width: 275px;
     	height: 20px;
-    	top: -54px;
-    	left: 150px;
 	}
 
+	/* language toggle */
+
+	#language-toggle {
+		bottom: 20px;
+		left: 20px;
+	}
 
 }
 
@@ -971,24 +993,28 @@ and (max-width : 1023px)  {
 
 	/* logos */
 
-	#a47 {
-
-		position: absolute;
-		top: 73px;
-		right: 35px;
-		width: 69px;
-		height: 73px;
-	    transform: translate(0px, 0px);
-	}
 
 	#alumnos {
-	    top: -67px;
-	    left: 183px;
-	    width: 335px;
-		height: 25px;
+		background: url(/img/a47.png) no-repeat center center;
+	   	width: 35px;
+		height: 35px;
+		top: 20px;
+		left: 20px;
+		background-size: contain;
 	}
 
+	/* language toggle */
 
+	#language-toggle {
+	    bottom: 20px;
+	    left: 20px;
+	    font-size: 12px;
+	}	
+
+	#mc-embedded-subscribe-form #mce-EMAIL {
+		width: 100%;
+		max-width: 100%;
+	}
 
 
 }
@@ -1031,10 +1057,15 @@ and (max-width : 767px) {
 		line-height: 30px;		
 	}	
 
+	#nav-toggle {
+    	right: 10px;
+    	top: 10px;	
+    }
+
 	#counter {
 		font-size: 12px;
-	    bottom: 15px;
-	    right: 15px;
+	    bottom: 10px;
+	    right: 10px;
 	}
 
 
@@ -1091,26 +1122,31 @@ and (max-width : 767px) {
 
 	/* logos */
 
-	#a47 {
-		position: absolute;
-		top: 73px;
-		right: 15px;
-		width: 66px;
-		height: 70px;
-	    transform: translate(0px, 0px);
-	}
 
 	#alumnos {
-		position: absolute;
-		top: 100px;
-		right: 25px;
-		left: auto;
+		background: url(/img/a47.png) no-repeat center center;
+	    width: 35px;
+		height: 35px;
+		top: 10px;
+		left: 10px;
+		background-size: contain;
+	}
 
-		background: url(/img/alumnos-small.png) no-repeat center center;
-		background-size: cover;
+	/* language toggle */
 
-		width: 135px;
-		height: 20px;
+	#language-toggle {
+	    bottom: 10px;
+	    left: 10px;
+	    font-size: 12px;
 	}	
 
+	/* subscription */
+
+	#mc-embedded-subscribe-form #mce-EMAIL {
+		width: 100%;
+		max-width: 100%;
+	}
+
+
 }
+
