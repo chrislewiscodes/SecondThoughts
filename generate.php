@@ -21,11 +21,11 @@ $translations = array(
 	'updated' => 'actualizado',
 	'update' => 'actualización',
 	'project' => 'proyecto',
-	'curatorial' => 'curatorial',
+	'curatorial abstract' => 'curatorial abstract',
 	'credits' => 'créditos',
 	'program' => 'programa',
 	'participants' => 'participantes',
-	'more info' => 'mas info',
+	'more references' => 'más referencias',
 	'contact' => 'contacto',
 );
 
@@ -150,9 +150,9 @@ function section($section) {
 			<span></span>
 		</div>
 		<?php if ($language === 'EN'): ?>
-			<p>This site is constantly changing; its content is edited and published in real time. Constantly review it to stay informed of our updates.</p>
+			<p>This site is constantly changing; it records and displays its edits and revisions over time. Please keep checking back to see our updates.</p>
 		<?php else: ?>
-			<p>Este sitio está en constante cambio; su contenido es editado y publicado en tiempo real. Revisarlo constantemente para mantenerse informado de nuestras actualizaciones.</p>
+			<p>Este sitio está en constante cambio; registra y muestra su proceso de edición y variaciones conforme pasa el tiempo. No dejes de visitarlo para ver nuestras actualizaciones.</p>
 		<?php endif; ?>
 	</div>
 </div>
@@ -165,7 +165,7 @@ function section($section) {
 				<a href="#" data-link="gen-description"><?php print translate('project', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="curatorial"><?php print translate('curatorial', 'ucfirst'); ?></a>
+				<a href="#" data-link="curatorial"><?php print translate('curatorial abstract', 'ucfirst'); ?></a>
 			</li>
 			<li>
 				<a href="#" data-link="credits"><?php print translate('credits', 'ucfirst'); ?></a>
@@ -177,7 +177,7 @@ function section($section) {
 				<a href="#" data-link="participants"><?php print translate('participants', 'ucfirst'); ?></a>
 			</li>
 			<li>
-				<a href="#" data-link="more-info"><?php print translate('more info', 'ucfirst'); ?></a>
+				<a href="#" data-link="more-info"><?php print translate('more references', 'ucfirst'); ?></a>
 			</li>
 			<li>
 				<a href="#" data-link="contact"><?php print translate('contact', 'ucfirst'); ?></a>
@@ -208,7 +208,7 @@ function section($section) {
 				<?php section('proyecto'); ?>
 			</div>
 			<div class="curatorial section">
-				<h2><?php print translate('curatorial', 'ucfirst'); ?></h2>
+				<h2><?php print translate('curatorial abstract', 'ucfirst'); ?></h2>
 				<?php section('curatorial'); ?>
 			</div>
 			<div class="credits section">
@@ -230,7 +230,7 @@ function section($section) {
 		</div>
 		<div class="col colfour">
 			<div class="more-info section">
-				<h2><?php print translate('more info', 'ucfirst'); ?></h2>
+				<h2><?php print translate('more references', 'ucfirst'); ?></h2>
 				<?php section('info'); ?>
 			</div>
 			<div class="contact section">
@@ -241,7 +241,7 @@ function section($section) {
 			<!-- MAILCHIMP -->
 			<form action="//secondthoughts.us11.list-manage.com/subscribe/post?u=e34c5ba197f6d60dce12b81b4&amp;id=a7ccdb3077" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 			    <div style="position: absolute; left: -5000px;"><input type="text" name="b_e34c5ba197f6d60dce12b81b4_a7ccdb3077" tabindex="-1" value=""></div>
-				<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="Email address">
+				<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="Email">
 			    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
 			    </div>
 			</form>
