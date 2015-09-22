@@ -2,7 +2,7 @@
 
 David discutirá sobre diseño, edición, publicación, y distribución. Sus actividades explorarán el uso de softwares en el arte, sugiriendo una transformación en los espectadores de observadores pasivos a usuarios activos.
 
-### Conferencia
+## Conferencia
 
 ### “I’ll be your Interface” 
 
@@ -12,7 +12,7 @@ David discutirá sobre diseño, edición, publicación, y distribución. Sus act
 * Paseo de la Reforma 51, Bosque de Chapultepec, México, D.F.
 * Evento gratuito y abierto al público
 
-### Seminario
+## Seminario
 
 ### “Editorial Auto-gobernada”
 
@@ -23,7 +23,7 @@ David discutirá sobre diseño, edición, publicación, y distribución. Sus act
 * (Alumnos 47, San Miguel Chapultepec, México, DF)
 * Evento gratuito con cupo limitado (reserva aquí)
 
-### Taller
+## Taller
 
 ### “Welcome to Tomorrow, Today” 
 

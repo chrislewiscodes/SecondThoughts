@@ -2,7 +2,7 @@
 
 David Reinfurt will show and discuss projects that exist between design, editing, publishing, and distribution. Framed within the concept of interfaces, his visit and activities will explore the use of software as functional works of art in the digital age
 
-### Lecture
+## Lecture
 
 ### “I’ll be your Interface” 
 
@@ -12,7 +12,7 @@ David Reinfurt will show and discuss projects that exist between design, editing
 * Paseo de la Reforma No 51, Bosque de Chapultepec, Mexico city, Mexico
 * Free event and open to the public
 
-### Seminar
+## Seminar
 
 ### “Self-governed publishing”
 
@@ -22,7 +22,7 @@ David Reinfurt will show and discuss projects that exist between design, editing
 * Alumnos 47, San Miguel Chapultepec, Mexico city, Mexico
 * Free with limited space
 
-### Workshop
+## Workshop
 
 ### “Welcome to Tomorrow, Today” 
 

@@ -1,4 +1,4 @@
-Second Thoughts  
+#Second Thoughts  
 
 - [General inquiries](mailto:info@secondthoughts.mx?subject=general)
 - [Press inquiries](mailto:press@secondthoughts.mx?subject=press)  
@@ -6,7 +6,7 @@ Second Thoughts
 - [Twitter](http://www.twitter.com/2ndthoughtsmx/)
 - [Instagram](http://www.instagram.com/2ndthoughtsmx/)
 
-Fundación Alumnos47
+#Fundación Alumnos47
 
 - [Facebook](http://www.facebook.com/Alumnos47/)
 - [Twitter](http://www.twitter.com/Alumnos47/)

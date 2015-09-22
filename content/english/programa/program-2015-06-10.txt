@@ -2,7 +2,7 @@
 
 David show and discuss his projects developed with ORG and Dexter Sinister. The activities to occur during his visit, will focus on ways of self-governed production in publishing and in the use of graphic design to generate knowledge.
 
-### lecture
+## lecture
 
 ### “Untitled” 
 
@@ -12,7 +12,7 @@ David show and discuss his projects developed with ORG and Dexter Sinister. The 
 * (Paseo de la Reforma No. 51, Bosque de Chapultepec, Mexico city, Mexico)
 * free event and open to the general public
 
-### seminar
+## seminar
 
 ### “Untitled”
 
@@ -23,7 +23,7 @@ David show and discuss his projects developed with ORG and Dexter Sinister. The 
 * (Alumnos No. 47, San Miguel Chapultepec, Mexico city, Mexico)
 * free event with limited space
 
-### workshop
+## workshop
 
 ### “Untitled (name to be provided)” 
 

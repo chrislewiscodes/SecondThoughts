@@ -1,8 +1,8 @@
-# Visita 1: David Reinfurt (Dexter Sinister) 11–14 de noviembre, 2015
+# Visita 1: David Reinfurt (Dexter Sinister), 11–14 de noviembre, 2015
 
 David Reinfurt mostrará y discutirá proyectos existentes en los espacios intermedios entre el diseño, la edición, la publicación y la distribución. Sus actividades, enmarcadas dentro del concepto general de “interfaces”, explorarán el uso de softwares como obras de arte en la era digital.
 
-### Conferencia
+## Conferencia
 
 ### “I’ll be your interface.*” 
 
@@ -11,7 +11,7 @@ David Reinfurt mostrará y discutirá proyectos existentes en los espacios inter
 * Paseo de la Reforma 51, Bosque de Chapultepec, México, D.F.
 * Actividad gratuita y abierta al público.  
 
-### Panel
+## Panel
 
 ### “Functional aesthetics”
 
@@ -21,14 +21,14 @@ David Reinfurt mostrará y discutirá proyectos existentes en los espacios inter
 * Alumnos 47, San Miguel Chapultepec, México, D.F.
 * Actividad gratuita con cupo limitado [reserva tu lugar](mailto:rsvp@secondthoughts.mx?subject=panel)
 
-### Taller
+## Taller
 
 ### “Welcome to tomorrow, today.*” 
 
 * 13–14 de noviembre, 2015 
 * Fundación Alumnos47 
 * Alumnos 47, San Miguel Chapultepec, México, D.F.
-* Actividad gratuita por invitación y convocatoria [interesados escribir aquí](mailto:info@secondthoughts.mx?subject=talleres)
+* Actividad gratuita por invitación y convocatoria [interesados aquí](mailto:info@secondthoughts.mx?subject=talleres)
 
 # Visita 2: Daniël van der Velden (Metahaven), 23–27 de febrero, 2016
 

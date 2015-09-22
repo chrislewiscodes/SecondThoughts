@@ -2,7 +2,7 @@
 
 David discutirá proyectos de Dexter Sinister. Las actividades estarán enfocadas en formas de producción auto-gobernadas en la industria editorial y el uso del diseño como un medio para la generación del conocimiento y la circulación de la información.
 
-### conferencia
+## conferencia
 
 ### “Sin Titulo” 
 
@@ -12,7 +12,7 @@ David discutirá proyectos de Dexter Sinister. Las actividades estarán enfocada
 * (Paseo de la Reforma No. 51, Bosque de Chapultepec, México, D.F.)
 * evento gratuito y abierto al publico en general
 
-### seminario
+## seminario
 
 ### “Sin Titulo”
 
@@ -23,7 +23,7 @@ David discutirá proyectos de Dexter Sinister. Las actividades estarán enfocada
 * (Alumnos No. 47, San Miguel Chapultepec, México, DF)
 * evento gratuito con cupo limitado
 
-### taller
+## taller
 
 ### “Sin Titulo (nombre por ser definido)” 
 
