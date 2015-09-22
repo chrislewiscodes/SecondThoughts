@@ -111,7 +111,7 @@ $('ins img, del img').wrap('<div class="image"></div>');
 var marks = getUrlParameter('marks');
 var debug = getUrlParameter('debug');
 
-var steps = ['old-0', 'old-2', 'new-2', 'new-1', 'new-0'];
+var steps = ['old-version', 'old-hidden', 'new-hidden', 'new-marks', 'new-version'];
 var stepcount = steps.length;
 
 var tick = 0;
@@ -128,6 +128,13 @@ function doMarks() {
 		var rev = revs - (Math.floor(tick / stepcount) % revs);
 		var step = tick % stepcount;
 		var phase = steps[step];
+
+		//skip "new to old" step between revisions which is the same
+		if (rev > 1 && phase === 'new-version') {
+			++tick;
+			doMarks();
+			return;
+		}
 
 		body.className = 'marks rev-' + rev + ' ' + phase;
 	} else {

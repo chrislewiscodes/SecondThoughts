@@ -540,18 +540,18 @@ img {
 	display: none;
 }
 
-.rev-2.old-0 .last-updated.rev-2,
-.rev-2.old-1 .last-updated.rev-2,
-.rev-2.old-2 .last-updated.rev-2,
-.rev-2.new-2 .last-updated.rev-1,
-.rev-2.new-1 .last-updated.rev-1,
-.rev-2.new-0 .last-updated.rev-1,
-.rev-1.old-0 .last-updated.rev-1,
-.rev-1.old-1 .last-updated.rev-1,
-.rev-1.old-2 .last-updated.rev-1,
-.rev-1.new-2 .last-updated.rev-0,
-.rev-1.new-1 .last-updated.rev-0,
-.rev-1.new-0 .last-updated.rev-0,
+.rev-2.old-version .last-updated.rev-2,
+.rev-2.old-marks .last-updated.rev-2,
+.rev-2.old-hidden .last-updated.rev-2,
+.rev-2.new-hidden .last-updated.rev-1,
+.rev-2.new-marks .last-updated.rev-1,
+.rev-2.new-version .last-updated.rev-1,
+.rev-1.old-version .last-updated.rev-1,
+.rev-1.old-marks .last-updated.rev-1,
+.rev-1.old-hidden .last-updated.rev-1,
+.rev-1.new-hidden .last-updated.rev-0,
+.rev-1.new-marks .last-updated.rev-0,
+.rev-1.new-version .last-updated.rev-0,
 .rev-0 .last-updated.rev-0 {
 	display: inline;
 }
@@ -559,12 +559,12 @@ img {
 /* marks */
 
 
-/* old-0 is plain old version
- * old-1 is old version with strikethroughs
- * old-2 is old version with invisible strikethroughs
- * new-2 is new version with invisible underlines
- * new-1 is new version with underlines
- * new-0 is plain new version
+/* old-version is plain old version
+ * old-marks is old version with strikethroughs
+ * old-hidden is old version with invisible strikethroughs
+ * new-hidden is new version with invisible underlines
+ * new-marks is new version with underlines
+ * new-version is plain new version
  */ 
 
 /* <del> is old revision, <ins> is new */
@@ -582,13 +582,13 @@ span.diff-html-changed {
 	position: relative;
 }
 
-.old-0 .revision ins, .old-1 .revision ins, .old-2 .revision ins,
-.new-2 .revision del, .new-1 .revision del, .new-0 .revision del {
+.old-version .revision ins, .old-marks .revision ins, .old-hidden .revision ins,
+.new-hidden .revision del, .new-marks .revision del, .new-version .revision del {
 	display: none;
 }
 
-.marks.old-2 .revision del, 
-.marks.new-2 .revision ins {
+.marks.old-hidden .revision del, 
+.marks.new-hidden .revision ins {
 	color: rgba(0,0,0,0);
 }
 
@@ -614,27 +614,27 @@ span.diff-html-changed {
 
 /* marks */
 
-.marks:not(.old-0) .revision del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
+.marks:not(.old-version) .revision del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
 	background: url(/img/black-dot.gif) 0px 0.5em repeat-x;
 	background: url(/img/curve.png) center 0.125em repeat-x;
 	background: none;
 }
 
-.marks:not(.old-0) .revision h1 del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
+.marks:not(.old-version) .revision h1 del:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
 	background: url(/img/black-dot.gif) 0px 0.5em repeat-x;
 	background: none;
 }
 
-.marks:not(.new-0) .revision ins:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
+.marks:not(.new-version) .revision ins:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
 	background: url(/img/black-dot.gif) 0px 15px repeat-x;
 }
 
-.marks:not(.new-0) .revision h1 ins:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
+.marks:not(.new-version) .revision h1 ins:not(.punctuation):not(.capitalize):not(.lowercase):not(.diacritic):not(.paragraph) {
 	background: url(/img/black-dot.gif) 0px 30px repeat-x;
 }
 
-.marks.new-1 .revision ins.punctuation::after,
-.marks.new-2 .revision ins.punctuation::after {
+.marks.new-marks .revision ins.punctuation::after,
+.marks.new-hidden .revision ins.punctuation::after {
 	display: block;
 	position: absolute;
 	left: -14px;
@@ -646,8 +646,8 @@ span.diff-html-changed {
     content: " ";
 }
 
-/*.marks.new-1 .revision h1 ins.punctuation::after,
-.marks.new-2 .revision h1 ins.punctuation::after {
+/*.marks.new-marks .revision h1 ins.punctuation::after,
+.marks.new-hidden .revision h1 ins.punctuation::after {
 	display: block;
 	position: absolute;
 	left: -18px;
@@ -660,10 +660,10 @@ span.diff-html-changed {
 }
 */
 
-.marks.old-1 .revision del.capitalize::after,
-.marks.old-2 .revision del.capitalize::after,
-.marks.new-1 .revision ins.capitalize::after,
-.marks.new-2 .revision ins.capitalize::after {
+.marks.old-marks .revision del.capitalize::after,
+.marks.old-hidden .revision del.capitalize::after,
+.marks.new-marks .revision ins.capitalize::after,
+.marks.new-hidden .revision ins.capitalize::after {
     display: block;
     position: absolute;
     left: 0px;
@@ -674,10 +674,10 @@ span.diff-html-changed {
     content: " ";
 }
 
-.marks.old-1 .revision h1 del.capitalize::after,
-.marks.old-2 .revision h1 del.capitalize::after,
-.marks.new-1 .revision h1 ins.capitalize::after,
-.marks.new-2 .revision h1 ins.capitalize::after {
+.marks.old-marks .revision h1 del.capitalize::after,
+.marks.old-hidden .revision h1 del.capitalize::after,
+.marks.new-marks .revision h1 ins.capitalize::after,
+.marks.new-hidden .revision h1 ins.capitalize::after {
 	display: block;
     position: absolute;
     left: 2px;
@@ -690,10 +690,10 @@ span.diff-html-changed {
 
 /* diacritics */
 
-.marks.old-1 .revision del.diacritic::after,
-.marks.old-2 .revision del.diacritic::after,
-.marks.new-1 .revision ins.diacritic::after,
-.marks.new-2 .revision ins.diacritic::after {
+.marks.old-marks .revision del.diacritic::after,
+.marks.old-hidden .revision del.diacritic::after,
+.marks.new-marks .revision ins.diacritic::after,
+.marks.new-hidden .revision ins.diacritic::after {
 	display: block;
 	position: absolute;
 	left: -11px;
@@ -728,10 +728,10 @@ span.diff-html-changed {
 }
 */
 
-.marks.old-1 .revision del.lowercase::after,
-.marks.old-2 .revision del.lowercase::after,
-.marks.new-1 .revision ins.lowercase::after,
-.marks.new-2 .revision ins.lowercase::after {
+.marks.old-marks .revision del.lowercase::after,
+.marks.old-hidden .revision del.lowercase::after,
+.marks.new-marks .revision ins.lowercase::after,
+.marks.new-hidden .revision ins.lowercase::after {
     display: block;
     position: absolute;
     left: -2px;
@@ -743,10 +743,10 @@ span.diff-html-changed {
     content: " ";
 }
 
-.marks.old-1 .revision h1 del.lowercase::after,
-.marks.old-2 .revision h1 del.lowercase::after,
-.marks.new-1 .revision h1 ins.lowercase::after,
-.marks.new-2 .revision h1 ins.lowercase::after {
+.marks.old-marks .revision h1 del.lowercase::after,
+.marks.old-hidden .revision h1 del.lowercase::after,
+.marks.new-marks .revision h1 ins.lowercase::after,
+.marks.new-hidden .revision h1 ins.lowercase::after {
     display: block;
     position: absolute;
     left: 0px;
@@ -758,10 +758,10 @@ span.diff-html-changed {
     content: " ";
 }
 
-.marks.old-1 .revision del.paragraph,
-.marks.old-2 .revision del.paragraph,
-.marks.new-1 .revision ins.paragraph,
-.marks.new-2 .revision ins.paragraph {
+.marks.old-marks .revision del.paragraph,
+.marks.old-hidden .revision del.paragraph,
+.marks.new-marks .revision ins.paragraph,
+.marks.new-hidden .revision ins.paragraph {
     background: url(/img/black-pillcrow.png) left top no-repeat;
     display: inline-block;
     position: relative;
@@ -772,12 +772,12 @@ span.diff-html-changed {
     background-size: contain;
  }
 
-.marks.old-0 .revision del.paragraph::after,
-.marks.old-1 .revision del.paragraph::after,
-.marks.old-2 .revision del.paragraph::after,
-.marks.new-0 .revision ins.paragraph::after,
-.marks.new-1 .revision ins.paragraph::after,
-.marks.new-2 .revision ins.paragraph::after {
+.marks.old-version .revision del.paragraph::after,
+.marks.old-marks .revision del.paragraph::after,
+.marks.old-hidden .revision del.paragraph::after,
+.marks.new-version .revision ins.paragraph::after,
+.marks.new-marks .revision ins.paragraph::after,
+.marks.new-hidden .revision ins.paragraph::after {
 	position: relative;
 	display: block;
 	height: 1em;
