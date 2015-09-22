@@ -54,9 +54,9 @@ function translate($text, $case='original') {
 function lastUpdated() {
 	global $revisiondates;
 	print translate('updated', 'ucfirst') . ": ";
-	print "<span class='last-updated rev-0'>" . date('d-m–Y', $revisiondates[0]) . "</span>";
-	print "<span class='last-updated rev-1'>" . date('d-m–Y', $revisiondates[1]) . "</span>";
-	print "<span class='last-updated rev-2'>" . date('d-m–Y', $revisiondates[2]) . "</span>";
+	print "<span class='last-updated rev-0'>" . date('d/m/Y', $revisiondates[0]) . "</span>";
+	print "<span class='last-updated rev-1'>" . date('d/m/Y', $revisiondates[1]) . "</span>";
+	print "<span class='last-updated rev-2'>" . date('d/m/Y', $revisiondates[2]) . "</span>";
 }
 
 function section($section) {
