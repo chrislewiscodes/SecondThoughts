@@ -134,6 +134,13 @@ function section($section) {
 	<meta name="msapplication-TileImage" content="ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
+	// GOOGLE ANALYTICS
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-67917323-1', 'auto');
+	ga('send', 'pageview');
 </head>
 <body class='rev-0'>
 
@@ -268,24 +275,5 @@ function section($section) {
 	$('#message').append(lastupdated);
 	positionMessage(); 
 </script>
-
-<?php 
-	print "<!-- "; 
-	var_dump($revisions); 
-	var_dump($diffs); 
-	print " -->";
-?>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-67917323-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
 </body>
 </html>
