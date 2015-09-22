@@ -288,9 +288,10 @@ ul { margin-bottom: 36px; }
 
 /* selected items */
 
-.navigated .section {
+.navigated .section, .navigated #mc-embedded-subscribe-form #mce-EMAIL, .navigated #mc-embedded-subscribe-form #mc-embedded-subscribe {
 	opacity: 0;
 }
+
 
 .navigated .section.selected {
 	opacity: 1;
