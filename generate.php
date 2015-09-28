@@ -1,6 +1,12 @@
 <?php 
 namespace SecondThoughts;
 
+#save static versions on request	
+if (isset($_GET['save'])) {
+	@exec('/usr/local/bin/php56 generate.php ES > spanish.html'); 
+	@exec('/usr/local/bin/php56 generate.php EN > english.html');
+}
+
 require_once("dev/2tdiff.php");
 
 $diffs = array();
@@ -12,9 +18,16 @@ $languages = array('ES' => 'spanish', 'EN' => 'english');
 
 if (PHP_SAPI === 'cli') {
 	$language = isset($argv[1]) && isset($languages[$argv[1]]) ? $argv[1] : 'ES';
+	$_SERVER['HTTP_HOST'] = 'secondthoughts.mx';
+	if (preg_match(':/([a-z]+)_secondthoughts:', __FILE__, $matches)) {
+		$_SERVER['HTTP_HOST'] = $matches[1] . '.' . $_SERVER['HTTP_HOST'];
+	}
 } else {
 	$language = isset($_GET['lang']) && isset($languages[$_GET['lang']]) ? $_GET['lang'] : 'ES';
 }
+
+$canonical = "http://{$_SERVER['HTTP_HOST']}/" . ($language === 'ES' ? '' : 'english.html');
+
 
 # all lowercase here; you can specify case in calls to translate()
 $translations = array(
@@ -109,12 +122,19 @@ function section($section) {
 <head>
 	<meta charset="UTF-8">
 	<title>Second Thoughts</title>
+	<link rel="canonical" href="<?php echo $canonical; ?>">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<meta name="viewport" content="initial-scale=1">
+	<meta property="og:image" content="http://<?php echo $_SERVER['HTTP_HOST']; ?>/facebook-preview.jpg">
+	<meta name="description" content="<?php
+		if ($language === 'ES') {
+			print "Second Thoughts es un programa de conferencias, talleres y paneles de discusión, enfocados en prácticas artísticas que hacen uso de la comunicación visual y el diseño gráfico como medios y motivos de experimentación e investigación crítica.";
+		} else {
+			print "Second Thoughts is a program of lectures, workshops and panel discussions, focusing on artistic practices that make use of visual communication and graphic design as means and motives of experimentation and critical research.";
+		}
+	?>">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="js/init.js"></script>
-
-	<link rel="canonical" href="http://secondthoughts.mx/">
 
 	<!-- adding favicons -->
 	<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
@@ -149,7 +169,7 @@ function section($section) {
 
 <script> 
 	//apply this before anything becomes visible
-	if (window.location.href.indexOf('fade') >= 0) {
+	if (window.location.hash.indexOf('fade') >= 0) {
 		document.getElementsByTagName('body')[0].style.opacity = 0;
 	}
 </script>
@@ -283,11 +303,3 @@ function section($section) {
 <div id='bodybuilder' style='height:0px'></div>
 </body>
 </html>
-
-<?php 
-
-#save static versions on request	
-if (isset($_GET['save'])) {
-	@exec('/usr/local/bin/php56 generate.php ES > spanish.html'); 
-	@exec('/usr/local/bin/php56 generate.php EN > english.html');
-}

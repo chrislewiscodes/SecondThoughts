@@ -3,7 +3,7 @@ RewriteEngine on
 RewriteBase "/"
 
 #redirect www.secondthoughts.mx to secondthoughts.mx
-RewriteCond %{HTTP_HOST} ^(www|test).secondthoughts.mx$ [NC]
+RewriteCond %{HTTP_HOST} ^(www|test)\.secondthoughts\.mx$ [NC]
 RewriteRule ^(.*)$ http://secondthoughts.mx/$1 [R=permanent,L]
 
 RewriteRule ^dev/ "-" [forbidden]

@@ -13,7 +13,7 @@ function getUrlParameter(sParam)
 
 
 var fadeDuration = 0.25;
-var doFade = getUrlParameter('fade');
+var doFade = (window.location.hash.indexOf('fade') >= 0);
 
 if (doFade) {
 	$('body').css('opacity', 0);
@@ -265,7 +265,7 @@ $('#overlay.overlay-on').each(function() {
 
 // fade in/out on certain links
 $('a.fade').on('click', function(evt) {
-	var url = this.href + (this.href.indexOf('?') >= 0 ? '&' : '?') + 'fade';
+	var url = this.href + '#fade';
 	//start the fade
 	$body.css('opacity', 1);
 	$body.animate({'opacity':0}, {'duration':fadeDuration*1000});
