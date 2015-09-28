@@ -63,7 +63,6 @@ $('#logo').click(function() {
 
 	$('#nav').find('a').removeClass('selected');
 	$('.section').removeClass('selected');
-
 })
 
 /* nav links */
@@ -123,11 +122,7 @@ var revs = 0;
 while ($('.rev-' + (++revs)).length) {}
 --revs;
 
-var maxBodyHeight = 0;
-
 function doMarks() {
-	var newBodyHeight;
-
 	if (tick >= 0) {
 		var rev = revs - (Math.floor(tick / stepcount) % revs);
 		var step = tick % stepcount;
@@ -146,22 +141,6 @@ function doMarks() {
 	}
 
 	debug && $('#bodyclass').text(body.className);
-
-	if (maxBodyHeight === 0) {
-		maxBodyHeight = $body.height();
-	}
-
-	if (maxBodyHeight !== null) {
-		newBodyHeight = $body.height();
-		if (newBodyHeight > maxBodyHeight) {
-			$('#bodybuilder').height((newBodyHeight-maxBodyHeight)*2);
-			maxBodyHeight = newBodyHeight;
-		}
-		//only have to do this for the first cycle
-		if (tick > stepcount) {
-			maxBodyHeight = null;
-		}
-	}
 
 	if (going) {
 		++tick;

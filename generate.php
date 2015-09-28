@@ -266,24 +266,16 @@ function section($section) {
 			<div class="contact section">
 				<h2><?php print translate('contact', 'ucfirst'); ?></h2>
 				<?php section('contacto'); ?>
+
+				<!-- MAILCHIMP -->
+				<form action="//secondthoughts.us11.list-manage.com/subscribe/post?u=e34c5ba197f6d60dce12b81b4&amp;id=a7ccdb3077" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+				    <div style="position: absolute; left: -5000px;"><input type="text" name="b_e34c5ba197f6d60dce12b81b4_a7ccdb3077" tabindex="-1" value=""></div>
+					<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="Email">
+				    <input type="submit" value="<?php print translate('subscribe', 'ucfirst'); ?>" name="subscribe" id="mc-embedded-subscribe" class="button">
+				    </div>
+				</form>
 			</div>
 
-			<!-- MAILCHIMP -->
-			<form action="//secondthoughts.us11.list-manage.com/subscribe/post?u=e34c5ba197f6d60dce12b81b4&amp;id=a7ccdb3077" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-			    <div style="position: absolute; left: -5000px;"><input type="text" name="b_e34c5ba197f6d60dce12b81b4_a7ccdb3077" tabindex="-1" value=""></div>
-				<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="Email">
-			    <input type="submit" value="<?php print translate('subscribe', 'ucfirst'); ?>" name="subscribe" id="mc-embedded-subscribe" class="button">
-			    </div>
-			</form>
-			<!-- /MAILCHIMP -->			
-			
-			<!--
-			<div>
-			<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/2ndthoughtsmx/lists/second-thoughts" data-widget-id="645010383527284736" data-tweet-limit="3" data-chrome="nofooter noborder noscrollbar transparent">Tweets from https://twitter.com/2ndthoughtsmx/lists/second-thoughts</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-			</div>
-			-->
-		
 		</div>		
 	</div>
 
@@ -300,6 +292,6 @@ function section($section) {
 </script>
 
 <!-- spacer in case some revisions are longer than the current version -->
-<div id='bodybuilder' style='height:0px'></div>
+<div id='bodybuilder' style='height:1in;'></div>
 </body>
 </html>

@@ -288,7 +288,7 @@ ul { margin-bottom: 36px; }
 
 /* selected items */
 
-.navigated .section, .navigated #mc-embedded-subscribe-form {
+.navigated .section {
 	opacity: 0;
 }
 
