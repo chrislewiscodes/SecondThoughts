@@ -1,4 +1,4 @@
-This is a project by Federico Pérez Villoro developed with support of Fundación Alumnos47.
+This is a project by [Federico Pérez Villoro](http://www.federicoperezvilloro.com/) developed with support of Fundación Alumnos47.
 
 We would like to thank Museo Tamayo and all the people who have made Second Thoughts possible, especially: Alicia Cheng, Sarah Gephart, Mariana Pérez Villoro, Ana Paula Tovar, Uriel Fernández Lignian, Chris Hamamoto, David Reinfurt, Daniël van del Velden, Constant Dullaart, Ana Posas, Chris Lewis, Manuel Alcalá, and Paula Villanueva. 
 
