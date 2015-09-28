@@ -105,7 +105,7 @@ function section($section) {
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo $language; ?>">
 <head>
 	<meta charset="UTF-8">
 	<title>Second Thoughts</title>
@@ -199,9 +199,9 @@ function section($section) {
 			if ($short !== $language) {
 				if (PHP_SAPI === 'cli') {
 					// in cron job, use static link
-					print "<a class='fade' href='{$long}.html'>$short</a>";
+					print "<a lang='$short' class='fade' href='{$long}.html'>$short</a>";
 				} else {
-					print "<a class='fade' href='?lang=$short'>$short</a>";
+					print "<a lang='$short' class='fade' href='?lang=$short'>$short</a>";
 				}
 				break;
 			}
