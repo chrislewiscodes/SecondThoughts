@@ -283,3 +283,11 @@ function section($section) {
 <div id='bodybuilder' style='height:0px'></div>
 </body>
 </html>
+
+<?php 
+
+#save static versions on request	
+if (isset($_GET['save'])) {
+	@exec('/usr/local/bin/php56 generate.php ES > spanish.html'); 
+	@exec('/usr/local/bin/php56 generate.php EN > english.html');
+}
