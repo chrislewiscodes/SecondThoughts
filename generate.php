@@ -278,5 +278,8 @@ function section($section) {
 	$('#message').append(lastupdated);
 	positionMessage(); 
 </script>
+
+<!-- spacer in case some revisions are longer than the current version -->
+<div id='bodybuilder' style='height:0px'></div>
 </body>
 </html>
